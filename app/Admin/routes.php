@@ -12,4 +12,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
+    // posts
+    $router->get('/articles', 'ArticlesController@index');
+
 });
