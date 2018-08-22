@@ -15,4 +15,9 @@ class AdminUser extends Authenticatable
 
     protected $fillable = ['username', 'password', 'name', 'avatar'];
 
+    public function getAvatarAttribute()
+    {
+        return $this->avatar ?? config('backend.default_avatar');
+    }
+
 }

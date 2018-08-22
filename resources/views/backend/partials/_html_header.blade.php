@@ -14,4 +14,4 @@
 <link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/bootstrap-daterangepicker/daterangepicker.css">
 <link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 @yield('style')
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('css/app.css') }}?v=0.11" rel="stylesheet">
