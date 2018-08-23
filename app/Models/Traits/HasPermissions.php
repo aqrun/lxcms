@@ -2,56 +2,10 @@
 
 namespace App\Models\Traits;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 
 trait HasPermissions
 {
-    /**
-     * Get avatar attribute.
-     *
-     * @param string $avatar
-     *
-     * @return string
-     */
-    public function getAvatarAttribute($avatar)
-    {
-        if ($avatar) {
-            return $avatar;
-        }
-
-        return '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg';
-    }
-
-    /**
-     * A user has and belongs to many roles.
-     *
-     * @return BelongsToMany
-     */
-    public function roles() : BelongsToMany
-    {
-        $pivotTable = config('admin.database.role_users_table');
-
-        $relatedModel = config('admin.database.roles_model');
-
-        return $this->belongsToMany($relatedModel, $pivotTable, 'user_id', 'role_id');
-    }
-
-    /**
-     * A User has and belongs to many permissions.
-     *
-     * @return BelongsToMany
-     */
-    public function permissions() : BelongsToMany
-    {
-        $pivotTable = config('admin.database.user_permissions_table');
-
-        $relatedModel = config('admin.database.permissions_model');
-
-        return $this->belongsToMany($relatedModel, $pivotTable, 'user_id', 'permission_id');
-    }
-
     /**
      * Get all permissions of user.
      *
@@ -59,7 +13,7 @@ trait HasPermissions
      */
     public function allPermissions() : Collection
     {
-        return $this->roles()->with('permissions')->get()->pluck('permissions')->flatten()->merge($this->permissions);
+        return $this->getAllPermissions();
     }
 
     /**
@@ -69,7 +23,7 @@ trait HasPermissions
      *
      * @return bool
      */
-    public function can(string $permission) : bool
+    public function can(string $permission): bool
     {
         if ($this->isAdministrator()) {
             return true;

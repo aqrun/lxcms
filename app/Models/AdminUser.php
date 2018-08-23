@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
-
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use App\Models\Traits\RbacHasRoles;
+use Illuminate\Auth\Authenticatable;
 
 /**
  * Class AdminUser
  *
  *
  */
-class AdminUser extends Authenticatable
+class AdminUser extends BaseModel implements AuthenticatableContract
 {
+
+    use Authenticatable, RbacHasRoles, Traits\HasPermissions;
 
     protected $fillable = ['username', 'password', 'name', 'avatar'];
 
@@ -19,5 +22,6 @@ class AdminUser extends Authenticatable
     {
         return $this->avatar ?? config('backend.default_avatar');
     }
+
 
 }

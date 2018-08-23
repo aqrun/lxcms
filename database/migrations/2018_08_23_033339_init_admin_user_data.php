@@ -3,13 +3,15 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use \App\Models\AdminUser;
-use Encore\Admin\Auth\Database\Role;
-use Encore\Admin\Auth\Database\Permission;
-use Encore\Admin\Auth\Database\Menu;
+use App\Models\AdminUser;
+use App\Models\RbacRole;
+use App\Models\RbacPermission;
+use App\Models\AdminMenu;
 
 class InitAdminUserData extends Migration
 {
+    const ADMIN_GUARD = 'admin_guard';
+
     /**
      * Run the migrations.
      *
@@ -20,7 +22,7 @@ class InitAdminUserData extends Migration
         $this->createdAdmin();
         $this->createRole();
         $this->createPermission();
-        $this->createMenus();
+//        $this->createMenus();
     }
 
     /**
@@ -35,8 +37,8 @@ class InitAdminUserData extends Migration
 
     protected function createdAdmin(){
         $admin = new AdminUser;
-        $admin->username='admin';
-        $admin->password = bcrypt('admin');
+        $admin->username='administrator';
+        $admin->password = bcrypt('123456');
         $admin->name = 'Administrator';
         $admin->remember_token = 'HuT8qIIscz';
         $admin->created_at = date('Y-m-d H:i:s');
@@ -46,59 +48,81 @@ class InitAdminUserData extends Migration
 
     protected function createRole(){
         // create a role.
-        Role::truncate();
-        Role::create([
-            'name' => 'Administrator',
-            'slug' => 'administrator',
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        RbacRole::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        $time = date('Y-m-d H:i:s');
+        RbacRole::insert([
+            ['name' => 'Administrator', 'slug' => 'administrator', 'guard_name' => self::ADMIN_GUARD,
+               'created_at' => $time, 'updated_at' => $time ],
+            ['name' => 'Admin', 'slug' => 'admin', 'guard_name' => self::ADMIN_GUARD,
+                'created_at' => $time, 'updated_at' => $time ],
+            ['name' => 'Article Manager', 'slug' => 'article_manager', 'guard_name' => self::ADMIN_GUARD,
+                'created_at' => $time, 'updated_at' => $time ],
         ]);
 
         // add role to user.
-        AdminUser::first()->roles()->save(Role::first());
+        AdminUser::first()->assignRole(RbacRole::first()->slug);
     }
 
     protected function createPermission(){
         //create a permission
-        Permission::truncate();
-        Permission::insert([
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        RbacPermission::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        $time = date('Y-m-d H:i:s');
+        RbacPermission::insert([
             [
                 'name'        => 'All permission',
                 'slug'        => '*',
                 'http_method' => '',
                 'http_path'   => '*',
+                'guard_name'  => self::ADMIN_GUARD,
+                'created_at' => $time, 'updated_at' => $time
             ],
             [
                 'name'        => 'Dashboard',
                 'slug'        => 'dashboard',
                 'http_method' => 'GET',
                 'http_path'   => '/',
+                'guard_name'  => self::ADMIN_GUARD,
+                'created_at' => $time, 'updated_at' => $time
             ],
             [
                 'name'        => 'Login',
                 'slug'        => 'auth.login',
                 'http_method' => '',
                 'http_path'   => "/auth/login\r\n/auth/logout",
+                'guard_name'  => self::ADMIN_GUARD,
+                'created_at' => $time, 'updated_at' => $time
             ],
             [
                 'name'        => 'User setting',
                 'slug'        => 'auth.setting',
                 'http_method' => 'GET,PUT',
                 'http_path'   => '/auth/setting',
+                'guard_name'  => self::ADMIN_GUARD,
+                'created_at' => $time, 'updated_at' => $time
             ],
             [
                 'name'        => 'Auth management',
                 'slug'        => 'auth.management',
                 'http_method' => '',
                 'http_path'   => "/auth/roles\r\n/auth/permissions\r\n/auth/menu\r\n/auth/logs",
+                'guard_name'  => self::ADMIN_GUARD,
+                'created_at' => $time, 'updated_at' => $time
             ],
         ]);
 
-        Role::first()->permissions()->save(Permission::first());
+        RbacRole::first()->givePermissionTo(RbacPermission::first()->slug);
     }
 
     protected function createMenus(){
         // add default menus.
-        Menu::truncate();
-        Menu::insert([
+        AdminMenu::truncate();
+        AdminMenu::insert([
             [
                 'parent_id' => 0,
                 'order'     => 1,
@@ -151,6 +175,6 @@ class InitAdminUserData extends Migration
         ]);
 
         // add role to menu.
-        Menu::find(2)->roles()->save(Role::first());
+        AdminMenu::find(2)->roles()->save(AuthRole::first());
     }
 }

@@ -15,6 +15,6 @@ class DashboardController extends BaseController
     }
 
     public function test(){
-        return 33434;
+        return __('test');
     }
 }
