@@ -20,18 +20,6 @@ return [
     'logo-mini' => '<b>La</b>',
 
     /*
-     * Route configuration.
-     */
-    'route' => [
-
-        'prefix' => 'backend',
-
-        'namespace' => 'App\\Admin\\Controllers',
-
-        'middleware' => ['web', 'admin'],
-    ],
-
-    /*
      * Laravel-admin install directory.
      */
     'directory' => app_path('Admin'),
@@ -45,25 +33,6 @@ return [
      * Use `https`.
      */
     'secure' => false,
-
-    /*
-     * Laravel-admin auth setting.
-     */
-    'auth' => [
-        'guards' => [
-            'admin' => [
-                'driver'   => 'session',
-                'provider' => 'admin',
-            ],
-        ],
-
-        'providers' => [
-            'admin' => [
-                'driver' => 'eloquent',
-                'model'  => Encore\Admin\Auth\Database\Administrator::class,
-            ],
-        ],
-    ],
 
     /*
      * Laravel-admin upload setting.

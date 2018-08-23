@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use App\Models\Traits\RbacHasRoles;
 use Illuminate\Auth\Authenticatable;
 
 /**
@@ -14,7 +13,7 @@ use Illuminate\Auth\Authenticatable;
 class AdminUser extends BaseModel implements AuthenticatableContract
 {
 
-    use Authenticatable, RbacHasRoles, Traits\HasPermissions;
+    use Authenticatable, Traits\RbacHasRoles;
 
     protected $fillable = ['username', 'password', 'name', 'avatar'];
 

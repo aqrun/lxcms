@@ -1,6 +1,6 @@
 <?php
 
-namespace Encore\Admin\Middleware;
+namespace App\Http\Middleware\Backend;
 
 use App\Helpers\PermissionHelper as Checker;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class Permission
      */
     public function handle(Request $request, \Closure $next, ...$args)
     {
-        if (!backen_auth()::user() || !empty($args)) {
+        if (!backend_auth()->user() || !empty($args)) {
             return $next($request);
         }
 
@@ -32,7 +32,7 @@ class Permission
             return $next($request);
         }
 
-        if (!backen_auth()::user()->allPermissions()->first(function ($permission) use ($request) {
+        if (!backend_auth()->user()->allPermissions()->first(function ($permission) use ($request) {
             return $permission->shouldPassThrough($request);
         })) {
             Checker::error();

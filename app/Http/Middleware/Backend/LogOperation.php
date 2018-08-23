@@ -20,7 +20,7 @@ class LogOperation
     {
         if ($this->shouldLogOperation($request)) {
             $log = [
-                'user_id' => backend_auth()::user()->id,
+                'user_id' => backend_auth()->user()->id,
                 'path'    => substr($request->path(), 0, 255),
                 'method'  => $request->method(),
                 'ip'      => $request->getClientIp(),
@@ -42,7 +42,7 @@ class LogOperation
     {
         return config('backend.operation_log.enable')
             && !$this->inExceptArray($request)
-            && backend_auth()::user();
+            && backend_auth()->user();
     }
 
     /**
