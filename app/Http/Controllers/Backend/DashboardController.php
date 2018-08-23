@@ -9,6 +9,7 @@ class DashboardController extends BaseController
      * @return string
      */
     public function index(){
+
         return view('backend.dashboard.index', [
             'a' => 'sdfkdjsfljsdlfj'
         ]);

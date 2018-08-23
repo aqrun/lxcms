@@ -1,7 +1,6 @@
-@if(count($errors) > 0)
-  <div class="alert alert-danger">
-    <h4>有错误发生</h4>
-    <ul>
+@if($errors->any())
+  <div class="alert alert-danger alert-dismissable">
+    <ul class="list-unstyled">
       @foreach ($errors->all() as $error)
         <li><i class="fa fa-remove"></i> {{ $error }}</li>
       @endforeach

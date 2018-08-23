@@ -69,6 +69,7 @@ return [
          */
 
         'role_has_permissions' => 'rbac_role_has_permissions',
+        'role_has_menus' => 'rbac_role_has_menus',
     ],
 
     /*

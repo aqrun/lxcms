@@ -13,6 +13,8 @@ use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Permission\Exceptions\PermissionAlreadyExists;
 use App\Contracts\Permission as PermissionContract;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RbacPermission extends Model implements PermissionContract
 {
@@ -178,5 +180,61 @@ class RbacPermission extends Model implements PermissionContract
     protected static function getPermissions(): Collection
     {
         return app(PermissionRegistrar::class)->getPermissions();
+    }
+
+    /**
+     * If request should pass through the current permission.
+     *
+     * @param Request $request
+     *
+     * @return bool
+     */
+    public function shouldPassThrough(Request $request) : bool
+    {
+        if (empty($this->http_method) && empty($this->http_path)) {
+            return true;
+        }
+
+        $method = $this->http_method;
+
+        $matches = array_map(function ($path) use ($method) {
+            $path = trim(config('backend.prefix'), '/').$path;
+
+            if (Str::contains($path, ':')) {
+                list($method, $path) = explode(':', $path);
+                $method = explode(',', $method);
+            }
+
+            return compact('method', 'path');
+        }, explode("\r\n", $this->http_path));
+
+        foreach ($matches as $match) {
+            if ($this->matchRequest($match, $request)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * If a request match the specific HTTP method and path.
+     *
+     * @param array   $match
+     * @param Request $request
+     *
+     * @return bool
+     */
+    protected function matchRequest(array $match, Request $request) : bool
+    {
+        if (!$request->is(trim($match['path'], '/'))) {
+            return false;
+        }
+
+        $method = collect($match['method'])->filter()->map(function ($method) {
+            return strtoupper($method);
+        });
+
+        return $method->isEmpty() || $method->contains($request->method());
     }
 }

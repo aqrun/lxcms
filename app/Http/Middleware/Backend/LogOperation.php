@@ -20,7 +20,7 @@ class LogOperation
     {
         if ($this->shouldLogOperation($request)) {
             $log = [
-                'user_id' => backend_auth()->user()->id,
+                'admin_user_id' => backend_auth()->user()->id,
                 'path'    => substr($request->path(), 0, 255),
                 'method'  => $request->method(),
                 'ip'      => $request->getClientIp(),

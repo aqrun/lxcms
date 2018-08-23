@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use App\Models\AdminUser;
 use App\Models\RbacRole;
 use App\Models\RbacPermission;
-use App\Models\AdminMenu;
+use App\Models\Menu;
 
 class InitAdminUserData extends Migration
 {
@@ -22,7 +22,7 @@ class InitAdminUserData extends Migration
         $this->createdAdmin();
         $this->createRole();
         $this->createPermission();
-//        $this->createMenus();
+        $this->createMenus();
     }
 
     /**
@@ -120,15 +120,17 @@ class InitAdminUserData extends Migration
     }
 
     protected function createMenus(){
+        $guard_name = config('backend.guard_name');
         // add default menus.
-        AdminMenu::truncate();
-        AdminMenu::insert([
+        Menu::truncate();
+        Menu::insert([
             [
                 'parent_id' => 0,
                 'order'     => 1,
                 'title'     => 'Index',
                 'icon'      => 'fa-bar-chart',
                 'uri'       => '/',
+                'guard_name' => $guard_name,
             ],
             [
                 'parent_id' => 0,
@@ -136,6 +138,7 @@ class InitAdminUserData extends Migration
                 'title'     => 'Admin',
                 'icon'      => 'fa-tasks',
                 'uri'       => '',
+                'guard_name' => $guard_name,
             ],
             [
                 'parent_id' => 2,
@@ -143,6 +146,7 @@ class InitAdminUserData extends Migration
                 'title'     => 'Users',
                 'icon'      => 'fa-users',
                 'uri'       => 'auth/users',
+                'guard_name' => $guard_name,
             ],
             [
                 'parent_id' => 2,
@@ -150,6 +154,7 @@ class InitAdminUserData extends Migration
                 'title'     => 'Roles',
                 'icon'      => 'fa-user',
                 'uri'       => 'auth/roles',
+                'guard_name' => $guard_name,
             ],
             [
                 'parent_id' => 2,
@@ -157,6 +162,7 @@ class InitAdminUserData extends Migration
                 'title'     => 'Permission',
                 'icon'      => 'fa-ban',
                 'uri'       => 'auth/permissions',
+                'guard_name' => $guard_name,
             ],
             [
                 'parent_id' => 2,
@@ -164,6 +170,7 @@ class InitAdminUserData extends Migration
                 'title'     => 'Menu',
                 'icon'      => 'fa-bars',
                 'uri'       => 'auth/menu',
+                'guard_name' => $guard_name,
             ],
             [
                 'parent_id' => 2,
@@ -171,10 +178,11 @@ class InitAdminUserData extends Migration
                 'title'     => 'Operation log',
                 'icon'      => 'fa-history',
                 'uri'       => 'auth/logs',
+                'guard_name' => $guard_name,
             ],
         ]);
 
         // add role to menu.
-        AdminMenu::find(2)->roles()->save(AuthRole::first());
+        Menu::find(2)->roles()->save(RbacRole::first());
     }
 }

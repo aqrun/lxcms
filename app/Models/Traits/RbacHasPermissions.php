@@ -33,7 +33,7 @@ trait RbacHasPermissions
             'model',
             config('permission.table_names.model_has_permissions'),
             'model_id',
-            'permission_id'
+            'rbac_permission_id'
         );
     }
 

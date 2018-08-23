@@ -21,7 +21,7 @@ class CreatePermissionTables extends Migration
             $table->string('slug', 50);
             $table->string('http_method')->nullable();
             $table->text('http_path')->nullable();
-            $table->string('guard_name');
+            $table->string('guard_name', 32);
             $table->timestamps();
         });
 
@@ -29,7 +29,7 @@ class CreatePermissionTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug', 50);
-            $table->string('guard_name');
+            $table->string('guard_name', 32);
             $table->timestamps();
         });
 
@@ -75,6 +75,31 @@ class CreatePermissionTables extends Migration
 
             app('cache')->forget('spatie.permission.cache');
         });
+
+        Schema::create('menus', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('parent_id')->default(0);
+            $table->integer('order')->default(0);
+            $table->string('title', 50);
+            $table->string('icon', 50);
+            $table->string('uri', 50)->nullable();
+            $table->string('guard_name', 32);
+
+            $table->timestamps();
+        });
+
+        Schema::create($tableNames['role_has_menus'], function (Blueprint $table) use ($tableNames) {
+            $table->unsignedInteger('rbac_role_id');
+            $table->unsignedInteger('menu_id');
+            $table->index(['rbac_role_id', 'menu_id']);
+            $table->timestamps();
+
+            $table->foreign('rbac_role_id')
+                ->references('id')
+                ->on($tableNames['roles'])
+                ->onDelete('cascade');
+            $table->primary(['rbac_role_id', 'menu_id'], 'admin_role_id_menu_id_primary');
+        });
     }
 
     /**
@@ -86,6 +111,8 @@ class CreatePermissionTables extends Migration
     {
         $tableNames = config('permission.table_names');
 
+        Schema::dropIfExists($tableNames['role_has_menus']);
+        Schema::dropIfExists('menus');
         Schema::drop($tableNames['role_has_permissions']);
         Schema::drop($tableNames['model_has_roles']);
         Schema::drop($tableNames['model_has_permissions']);

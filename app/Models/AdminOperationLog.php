@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AdminOperationLog extends BaseModel
 {
-    protected $fillable = ['user_id', 'path', 'method', 'ip', 'input'];
+    protected $fillable = ['admin_user_id', 'path', 'method', 'ip', 'input'];
 
     public static $methodColors = [
         'GET'    => 'green',

@@ -21,15 +21,15 @@ class AuthController extends BaseController
 
         $user = request(['username', 'password']);
         if(Auth::guard('admin_guard')->attempt($user)){
-            return redirect('/backend/dashboard');
+            return redirect(base_url() . '/dashboard');
         }
 
-        return Redirect::back()->withErrors('用户名密码不匹配');
+        return Redirect::back()->withErrors('用户名或密码有误');
     }
 
     public function logout()
     {
         Auth::guard('admin_guard')->logout();
-        return redirect('/backend/login');
+        return redirect(base_url() . '/login');
     }
 }

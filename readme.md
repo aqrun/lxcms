@@ -1,0 +1,1 @@
+{!! $errors->first('username', '<span class="helper-block">:message</span>') !!}

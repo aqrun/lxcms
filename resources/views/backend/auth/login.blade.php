@@ -20,13 +20,16 @@
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
 
-    <form action="{{ base_url() }}/" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Username">
-        <span class="glyphicon glyphicon-envelope form-control-feedback">dasdas</span>
+    @include('backend.partials._errors')
+
+    <form action="{{ base_url() }}/login" method="post">
+      @csrf
+      <div class="form-group has-feedback{{ $errors->first('username', ' has-error') }}">
+        <input type="text" class="form-control" placeholder="Username" name="username">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+      <div class="form-group has-feedback{{ $errors->first('password', ' has-error') }}">
+        <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

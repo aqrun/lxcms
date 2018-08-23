@@ -24,17 +24,6 @@ class CreateAdminTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('admin_menus', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('parent_id')->default(0);
-            $table->integer('order')->default(0);
-            $table->string('title', 50);
-            $table->string('icon', 50);
-            $table->string('uri', 50)->nullable();
-
-            $table->timestamps();
-        });
-
         Schema::create('admin_operation_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('admin_user_id');
@@ -57,7 +46,6 @@ class CreateAdminTables extends Migration
         $connection = config('admin.database.connection') ?: config('database.default');
 
         Schema::dropIfExists('admin_users');
-        Schema::dropIfExists('admin_menus');
         Schema::dropIfExists('admin_operation_logs');
     }
 }
