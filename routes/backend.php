@@ -8,7 +8,7 @@ Route::group([
 
     Route::get('/login', 'AuthController@login')->name('login');
     Route::post('/login', 'AuthController@doLogin');
-    Route::get('/logout', 'AuthController@logout')->name('logout');
+    Route::post('/logout', 'AuthController@logout')->name('logout');
 
     Route::get('/test', 'DashboardController@test');
     Route::get('/', 'DashboardController@index');

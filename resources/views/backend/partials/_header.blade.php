@@ -39,7 +39,12 @@
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                <a href="#" onclick="javascript:$('#frm_header_logout').submit()" class="btn btn-default btn-flat">Sign out</a>
+                <form style="display:none" id="frm_header_logout"
+                      action="{{ base_url().'/logout'  }}"
+                      method="post">
+                  @csrf
+                </form>
               </div>
             </li>
           </ul>

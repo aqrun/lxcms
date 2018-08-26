@@ -185,7 +185,7 @@ trait RbacHasPermissions
     public function hasDirectPermission($permission): bool
     {
         if (is_string($permission)) {
-            $permission = app(Permission::class)->findByName($permission, $this->getDefaultGuardName());
+            $permission = app(Permission::class)->findBySlug($permission, $this->getDefaultGuardName());
             if (! $permission) {
                 return false;
             }

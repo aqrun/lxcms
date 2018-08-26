@@ -11,7 +11,7 @@ class Permission
     /**
      * @var string
      */
-    protected $middlewarePrefix = 'admin.permission:';
+    protected $middlewarePrefix = 'backend.permission:';
 
     /**
      * Handle an incoming request.

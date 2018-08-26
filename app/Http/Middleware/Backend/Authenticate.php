@@ -17,7 +17,7 @@ class Authenticate
     public function handle($request, Closure $next)
     {
         if (backend_auth()->guest() && !$this->shouldPassThrough($request)) {
-            return redirect()->guest('backend/login');
+            return redirect()->guest(base_url() . '/login');
         }
 
         return $next($request);

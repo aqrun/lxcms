@@ -3,6 +3,7 @@
 <head>
   @include('backend.partials._html_header')
 
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -43,11 +44,11 @@
 
   @include('backend.partials._footer')
 
-
+  @include('backend.partials._scripts')
 
 </div>
 <!-- ./wrapper -->
 
-@include('backend.partials._scripts')
+
 </body>
 </html>

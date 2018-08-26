@@ -1,9 +1,7 @@
-<script src="/vendor/AdminLTE-2.4.5/bower_components/jquery/dist/jquery.min.js"></script>
+
+
+
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/raphael/raphael.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/morris.js/morris.min.js"></script>
@@ -22,5 +20,10 @@
 @yield('script')
 
 <script src="{{ asset('js/app.js') }}?v=0.2"></script>
-
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $(function(){
+        $.widget.bridge('uibutton', $.ui.button);
+    })
+</script>
 @yield('page_script')
