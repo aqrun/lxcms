@@ -52,12 +52,24 @@ class Backend
      *
      * @return string
      */
-    function baseUrl($path = '')
+    public function baseUrl($path = '')
     {
         $prefix = '/'.trim(config('backend.prefix'), '/');
 
         $prefix = ($prefix == '/') ? '' : $prefix;
 
         return $prefix.'/'.trim($path, '/');
+    }
+
+    /**
+     * each page include script file according
+     * @param $templateFile
+     */
+    public function includePjaxScript($templateFile)
+    {
+        $realScriptFile = resource_path('assets/backend/' . $templateFile);
+        if(is_file($realScriptFile)){
+            include $realScriptFile;
+        }
     }
 }

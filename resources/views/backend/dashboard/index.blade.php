@@ -1,6 +1,20 @@
 
 @extends('backend.layouts.main')
+
 @section('title', 'Dashboard')
+@section('description', 'backend basic data')
+
+@section('breadcrumb')
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+    </ol>
+@endsection
+
+@section('pjax-js')
+    window.menuUri='{{ $menuUri }}';
+    {{ Backend::includePjaxScript('dashboard/script.js') }}
+@endsection
 
 @section('content')
     <div class="row">
@@ -42,7 +56,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
 
             <div class="box box-default">
                 <div class="box-header with-border">
@@ -68,41 +82,8 @@
 
         </div>
 
-        <div class="col-md-4">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Available extensions</h3>
-                    <div class="box-tools pull-right">
-                        <button class="btn btn-box-tool" type="button" data-weight="collapse"><i class="fa fa-minus"></i></button>
-                        <button class="btn btn-box-tool" type="button" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <ul class="products-list product-list-in-box">
 
-                        @foreach($extensions as $extension)
-                            <li class="item">
-                                <div class="product-img">
-                                    <i class="fa fa-{{$extension['icon']}} fa-2x ext-icon"></i>
-                                </div>
-                                <div class="product-info">
-                                    <a href="{{ $extension['link'] }}" target="_blank" class="product-title">
-                                        {{ $extension['name'] }}
-                                    </a>
-                                    @if($extension['installed'])
-                                        <span class="pull-right installed"><i class="fa fa-check"></i></span>
-                                    @endif
-                                </div>
-                            </li>
-                    @endforeach
-
-                    <!-- /.item -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Dependencies</h3>
@@ -128,7 +109,5 @@
         </div>
 
     </div>
+@endsection
 
-
-
-@stop

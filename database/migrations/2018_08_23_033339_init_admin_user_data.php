@@ -145,7 +145,7 @@ class InitAdminUserData extends Migration
                 'order'     => 3,
                 'title'     => 'Users',
                 'icon'      => 'fa-users',
-                'uri'       => '/admin/users',
+                'uri'       => '/admin-users',
                 'guard_name' => $guard_name,
             ],
             [
@@ -153,7 +153,7 @@ class InitAdminUserData extends Migration
                 'order'     => 4,
                 'title'     => 'Roles',
                 'icon'      => 'fa-user',
-                'uri'       => '/admin/roles',
+                'uri'       => '/rbac-roles',
                 'guard_name' => $guard_name,
             ],
             [
@@ -161,7 +161,7 @@ class InitAdminUserData extends Migration
                 'order'     => 5,
                 'title'     => 'Permission',
                 'icon'      => 'fa-ban',
-                'uri'       => '/admin/permissions',
+                'uri'       => '/rbac-permissions',
                 'guard_name' => $guard_name,
             ],
             [
@@ -169,7 +169,7 @@ class InitAdminUserData extends Migration
                 'order'     => 6,
                 'title'     => 'Menu',
                 'icon'      => 'fa-bars',
-                'uri'       => '/admin/menu',
+                'uri'       => '/menus',
                 'guard_name' => $guard_name,
             ],
             [
@@ -177,7 +177,7 @@ class InitAdminUserData extends Migration
                 'order'     => 7,
                 'title'     => 'Operation log',
                 'icon'      => 'fa-history',
-                'uri'       => '/admin/logs',
+                'uri'       => '/admin-operation-logs',
                 'guard_name' => $guard_name,
             ],
         ]);

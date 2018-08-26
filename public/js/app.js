@@ -772,7 +772,19 @@ __webpack_require__(9);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-//require('./components/Example');
+!function () {
+
+    function sidebarActive() {
+        var $s = $('a[href="' + window.menuUri + '"]');
+        $s.parent().siblings().removeClass('active');
+        $s.parent().addClass('active');
+        $s.parents('.treeview').addClass('active');
+    }
+
+    $(function () {
+        sidebarActive();
+    });
+}();
 
 /***/ }),
 /* 9 */

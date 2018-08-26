@@ -12,7 +12,7 @@
         </li>
     @else
         <li class="treeview">
-            <a href="#">
+            <a href="#" class="treeview-title">
                 <i class="fa {{$item['icon']}}"></i>
                 <span>{{$item['title']}}</span>
                 <i class="fa fa-angle-left pull-right"></i>

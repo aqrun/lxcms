@@ -15,4 +15,18 @@ Route::group([
     Route::get('/dashboard', 'DashboardController@index');
 
 
+    // admin users
+    Route::get('/admin-users', 'AdminUsersController@index')->name('admin-users.index');
+
+    // menus
+    Route::get('/menus', 'MenusController@index')->name('menus.index');
+
+    //rbac roles permission
+    Route::get('/rbac-roles', 'RbacRolesController@index')->name('rbac-roles.index');
+
+    Route::get('/rbac-permissions', 'RbacPermissionsController@index')->name('rbac-permissions.index');
+
+    //system logs
+    Route::get('/admin-operation-logs', 'AdminOperationLogsController@index')->name('admin-operation-logs.index');
+
 });

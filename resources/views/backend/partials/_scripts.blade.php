@@ -19,7 +19,7 @@
 
 @yield('script')
 
-<script src="{{ asset('js/app.js') }}?v=0.2"></script>
+<script src="{{ asset('js/app.js') }}?v=0.24"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $(function(){
