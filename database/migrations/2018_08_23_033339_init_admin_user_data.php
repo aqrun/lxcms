@@ -127,9 +127,9 @@ class InitAdminUserData extends Migration
             [
                 'parent_id' => 0,
                 'order'     => 1,
-                'title'     => 'Index',
+                'title'     => 'Dashboard',
                 'icon'      => 'fa-bar-chart',
-                'uri'       => '/',
+                'uri'       => '/dashboard',
                 'guard_name' => $guard_name,
             ],
             [
@@ -145,7 +145,7 @@ class InitAdminUserData extends Migration
                 'order'     => 3,
                 'title'     => 'Users',
                 'icon'      => 'fa-users',
-                'uri'       => 'auth/users',
+                'uri'       => '/admin/users',
                 'guard_name' => $guard_name,
             ],
             [
@@ -153,7 +153,7 @@ class InitAdminUserData extends Migration
                 'order'     => 4,
                 'title'     => 'Roles',
                 'icon'      => 'fa-user',
-                'uri'       => 'auth/roles',
+                'uri'       => '/admin/roles',
                 'guard_name' => $guard_name,
             ],
             [
@@ -161,7 +161,7 @@ class InitAdminUserData extends Migration
                 'order'     => 5,
                 'title'     => 'Permission',
                 'icon'      => 'fa-ban',
-                'uri'       => 'auth/permissions',
+                'uri'       => '/admin/permissions',
                 'guard_name' => $guard_name,
             ],
             [
@@ -169,7 +169,7 @@ class InitAdminUserData extends Migration
                 'order'     => 6,
                 'title'     => 'Menu',
                 'icon'      => 'fa-bars',
-                'uri'       => 'auth/menu',
+                'uri'       => '/admin/menu',
                 'guard_name' => $guard_name,
             ],
             [
@@ -177,7 +177,7 @@ class InitAdminUserData extends Migration
                 'order'     => 7,
                 'title'     => 'Operation log',
                 'icon'      => 'fa-history',
-                'uri'       => 'auth/logs',
+                'uri'       => '/admin/logs',
                 'guard_name' => $guard_name,
             ],
         ]);

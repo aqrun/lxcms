@@ -127,12 +127,13 @@ trait ModelTree
 
     /**
      * Format data to tree like array.
+     * @param string $guardName
      *
      * @return array
      */
-    public function toTree()
+    public function toTree($guardName='web')
     {
-        return $this->buildNestedArray();
+        return $this->buildNestedArray([], 0, $guardName);
     }
 
     /**
@@ -140,15 +141,16 @@ trait ModelTree
      *
      * @param array $nodes
      * @param int   $parentId
+     * @param string $guardName
      *
      * @return array
      */
-    protected function buildNestedArray(array $nodes = [], $parentId = 0)
+    protected function buildNestedArray(array $nodes = [], $parentId = 0, $guardName='web')
     {
         $branch = [];
 
         if (empty($nodes)) {
-            $nodes = $this->allNodes();
+            $nodes = $this->allNodes($guardName);
         }
 
         foreach ($nodes as $node) {
@@ -169,9 +171,11 @@ trait ModelTree
     /**
      * Get all elements.
      *
+     * @param string $guardName
+     *
      * @return mixed
      */
-    public function allNodes()
+    public function allNodes($guardName='web')
     {
         $orderColumn = DB::getQueryGrammar()->wrap($this->orderColumn);
         $byOrder = $orderColumn.' = 0,'.$orderColumn;
@@ -182,7 +186,7 @@ trait ModelTree
             $self = call_user_func($this->queryCallback, $self);
         }
 
-        return $self->orderByRaw($byOrder)->get()->toArray();
+        return $self->where('guard_name',$guardName)->orderByRaw($byOrder)->get()->toArray();
     }
 
     /**

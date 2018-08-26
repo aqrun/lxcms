@@ -208,6 +208,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Date' => Jenssegers\Date\Date::class,
+        'Backend' => App\Facades\Backend::class,
 
     ],
 
