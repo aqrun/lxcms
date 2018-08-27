@@ -6,6 +6,16 @@ use App\Models\Menu;
 
 class Backend
 {
+    public static $menuUri = '/';
+
+    public function getMenuUri()
+    {
+        return static::$menuUri;
+    }
+
+    public function setMenuUri($uri){
+        static::$menuUri = $uri;
+    }
 
     public function guardName(){
         return config('backend.guard_name');

@@ -3,14 +3,16 @@ namespace App\Http\Controllers\Backend;
 
 class DashboardController extends BaseController
 {
+    public function __construct()
+    {
+        self::setMenuUri('/dashboard');
+    }
 
     /**
      * backend index
      * @return string
      */
     public function index(){
-        static::$menuUri = \Backend::baseUrl('/dashboard');
-
         $envs = [
             ['name' => 'PHP version',       'value' => 'PHP/'.PHP_VERSION],
             ['name' => 'Laravel version',   'value' => app()->version()],

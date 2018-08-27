@@ -12,7 +12,6 @@
 @endsection
 
 @section('pjax-js')
-    window.menuUri='{{ $menuUri }}';
     {{ Backend::includePjaxScript('dashboard/script.js') }}
 @endsection
 

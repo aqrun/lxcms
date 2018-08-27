@@ -1,8 +1,12 @@
 
 
-
+<script src="/vendor/AdminLTE-2.4.5/plugins/axios/dist/axios.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-pjax/jquery.pjax.js?v=0.1"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/nprogress/nprogress.js"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/toastr/build/toastr.min.js"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/raphael/raphael.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/morris.js/morris.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
@@ -19,7 +23,7 @@
 
 @yield('script')
 
-<script src="{{ asset('js/app.js') }}?v=0.24"></script>
+<script src="{{ mix('/js/app.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $(function(){

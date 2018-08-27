@@ -10,13 +10,15 @@ class BaseController extends Controller
 {
     use DispatchesJobs, ValidatesRequests, AuthorizesRequests;
 
-    public static $menuUri = '/';
-
     public function view($template, $params=[]){
         $defaultParams = [
-            'menuUri' => static::$menuUri,
+
         ];
         return view($template, array_merge($defaultParams, $params));
+    }
+
+    public static function setMenuUri($uri='/'){
+        \Backend::setMenuUri(\Backend::baseUrl($uri));
     }
 
 }

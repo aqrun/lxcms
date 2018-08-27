@@ -3,9 +3,12 @@ namespace App\Http\Controllers\Backend;
 
 class AdminUsersController extends BaseController
 {
+
+    public function __construct(){
+        self::setMenuUri('/admin-users');
+    }
+
     public function index(){
-        // 当前URL
-        static::$menuUri = \Backend::baseUrl('/admin-users');
 
         return $this->view('backend.admin-users.index');
     }

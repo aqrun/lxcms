@@ -66,7 +66,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
         'backend.auth'       => \App\Http\Middleware\Backend\Authenticate::class,
-        'backend.pjax'       => \App\Http\Middleware\Pjax::class,
+        'backend.pjax'       => \App\Http\Middleware\Backend\Pjax::class,
         'backend.log'        => \App\Http\Middleware\Backend\LogOperation::class,
         'backend.permission' => \App\Http\Middleware\Backend\Permission::class,
     ];

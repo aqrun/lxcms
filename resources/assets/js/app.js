@@ -1,29 +1,47 @@
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes React and other helpers. It's a great starting point while
- * building robust, powerful web applications using React + Laravel.
- */
+window.g = window.g || {};
 
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import pjax_setup from './pjax-setup';
 
-!(function(){
+!(function($){
 
-    function sidebarActive(){
-        var $s = $('a[href="'+ window.menuUri +'"]');
+    function sidebarClick(){
+        $('.sidebar-menu li:not(.treeview) > a').on('click', function(){
+            var $parent = $(this).parent().addClass('active');
+            $parent.siblings('.treeview.active').find('> a').trigger('click');
+            $parent.siblings().removeClass('active').find('li').removeClass('active');
+        });
+    }
+    function sidebarInitActive(){
+        var $s = $('a[href="'+ g.menuUri +'"]');
         $s.parent().siblings().removeClass('active');
         $s.parent().addClass('active');
         $s.parents('.treeview').addClass('active')
     }
 
 
+    $.fn.editable.defaults.params = function (params) {
+        params._token = LA.token;
+        params._editable = 1;
+        params._method = 'PUT';
+        return params;
+    };
+
+    toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        showMethod: 'slideDown',
+        timeOut: 4000
+    };
+
     $(function(){
-        sidebarActive();
+        sidebarInitActive();
+        sidebarClick();
+        pjax_setup();
+
+        $('[data-toggle="popover"]').popover();
+
     });
-})();
+})(jQuery);
