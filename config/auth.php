@@ -74,7 +74,7 @@ return [
         ],
         'admin_users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\AdminUser::class,
+            'model' => Modules\Backend\Entities\AdminUser::class,
         ]
         // 'users' => [
         //     'driver' => 'database',

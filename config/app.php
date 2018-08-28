@@ -155,8 +155,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\PermissionServiceProvider::class,
-        App\Backend\Providers\BackendServiceProvider::class,
+        Modules\Backend\Providers\PermissionServiceProvider::class,
+        Modules\Backend\Providers\BackendServiceProvider::class,
     ],
 
     /*
@@ -207,7 +207,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Date' => Jenssegers\Date\Date::class,
-        'Backend' => App\Backend\Facades\Backend::class,
+        'Backend' => Modules\Backend\Facades\Backend::class,
 
     ],
 
