@@ -81,7 +81,7 @@ class Backend
      */
     public function includePjaxScript($templateFile)
     {
-        $realScriptFile = module_path('Backend') . '/resources/assets/scripts/'. $templateFile;
+        $realScriptFile = module_path('Backend') . '/Resources/assets/scripts/'. $templateFile;
         if(is_file($realScriptFile)){
             include $realScriptFile;
         }

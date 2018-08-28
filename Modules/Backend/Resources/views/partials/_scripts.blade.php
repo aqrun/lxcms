@@ -4,6 +4,8 @@
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-pjax/jquery.pjax.js?v=0.1"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/nprogress/nprogress.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/toastr/build/toastr.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap3-editable/js/bootstrap-editable.min.js"></script>

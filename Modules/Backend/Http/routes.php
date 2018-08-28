@@ -16,18 +16,23 @@ Route::group([
     Route::get('/dashboard', 'DashboardController@index');
 
 
-// admin users
+    // admin users
     Route::get('/admin-users', 'AdminUsersController@index')->name('admin-users.index');
+    Route::post('/admin-users/index-data', 'AdminUsersController@indexData')->name('admin-users.index-data');
 
-// menus
+    // menus
     Route::get('/menus', 'MenusController@index')->name('menus.index');
+    Route::post('/menus/index-data', 'MenusController@indexData')->name('menus.index-data');
 
-//rbac roles permission
+    //rbac roles permission
     Route::get('/rbac-roles', 'RbacRolesController@index')->name('rbac-roles.index');
+    Route::post('/rbac-roles/index-data', 'RbacRolesController@indexData')->name('rbac-roles.index-data');
 
     Route::get('/rbac-permissions', 'RbacPermissionsController@index')->name('rbac-permissions.index');
+    Route::post('/rbac-permissions/index-data', 'RbacPermissionsController@indexData')->name('rbac-permissions.index-data');
 
-//system logs
+    //system logs
     Route::get('/admin-operation-logs', 'AdminOperationLogsController@index')->name('admin-operation-logs.index');
+    Route::post('/admin-operation-logs/index-data', 'AdminOperationLogsController@indexData')->name('admin-operation-logs.index-data');
 
 });

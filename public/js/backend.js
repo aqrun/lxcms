@@ -82,9 +82,11 @@ __webpack_require__("./Resources/assets/js/bootstrap.js");
 
     function sidebarClick() {
         $('.sidebar-menu li:not(.treeview) > a').on('click', function () {
-            var $parent = $(this).parent().addClass('active');
+            var $s = $(this);
+            var $parent = $s.parent().addClass('active');
             $parent.siblings('.treeview.active').find('> a').trigger('click');
             $parent.siblings().removeClass('active').find('li').removeClass('active');
+            $s.parents('.main-sidebar').find('.sidebar-menu>li').removeClass('active');
         });
     }
     function sidebarInitActive() {
