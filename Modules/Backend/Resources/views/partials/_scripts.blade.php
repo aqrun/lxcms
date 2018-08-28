@@ -23,7 +23,7 @@
 
 @yield('script')
 
-<script src="{{ mix('/js/app.js') }}"></script>
+<script src="{{ mix('/js/backend.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $(function(){

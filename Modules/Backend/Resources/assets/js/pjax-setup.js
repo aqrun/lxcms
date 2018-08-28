@@ -25,7 +25,7 @@ export default function pjax_setup(){
 
     $(document).on('pjax:send', function(xhr) {
         if(xhr.relatedTarget && xhr.relatedTarget.tagName && xhr.relatedTarget.tagName.toLowerCase() === 'form') {
-            $submit_btn = $('form[pjax-container] :submit');
+            var $submit_btn = $('form[pjax-container] :submit');
             if($submit_btn) {
                 $submit_btn.button('loading')
             }
@@ -35,7 +35,7 @@ export default function pjax_setup(){
 
     $(document).on('pjax:complete', function(xhr) {
         if(xhr.relatedTarget && xhr.relatedTarget.tagName && xhr.relatedTarget.tagName.toLowerCase() === 'form') {
-            $submit_btn = $('form[pjax-container] :submit');
+            var $submit_btn = $('form[pjax-container] :submit');
             if($submit_btn) {
                 $submit_btn.button('reset')
             }
