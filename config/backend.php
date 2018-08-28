@@ -1,5 +1,7 @@
 <?php
+
 return [
+    'name' => 'Backend',
     'guard_name' => 'admin_guard',
     'prefix' => 'backend',
     'anonymous_avatar' => '/vendor/AdminLTE-2.4.5/dist/img/user1-128x128.jpg',
@@ -8,7 +10,7 @@ return [
     /*
      * Laravel-admin name.
      */
-    'name' => 'Laravel-admin',
+    'site_name' => 'Laravel-admin',
 
     /*
      * Logo in admin panel header.
