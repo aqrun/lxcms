@@ -11,6 +11,6 @@
 |
 */
 
-
-include_once __DIR__ . '/frontend.php';
-include_once __DIR__ . '/backend.php';
+Route::get('/', function () {
+    return view('welcome');
+});

@@ -147,7 +147,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-
         /*
          * Application Service Providers...
          */
@@ -157,7 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\PermissionServiceProvider::class,
-
+        App\Backend\Providers\BackendServiceProvider::class,
     ],
 
     /*
@@ -208,7 +207,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Date' => Jenssegers\Date\Date::class,
-        'Backend' => App\Facades\Backend::class,
+        'Backend' => App\Backend\Facades\Backend::class,
 
     ],
 
