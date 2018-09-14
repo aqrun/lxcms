@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/bootstrap3-editable/css/bootstrap-editable.css">
 <link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/toastr/build/toastr.min.css">
 @yield('style')
-<link href="{{ mix('/css/backend.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="/backend/dist/app.{{ \Backend::assetHash() }}.css">
 
 <script type="text/javascript">
     window.g = {};

@@ -11,10 +11,6 @@
     </ol>
 @endsection
 
-@section('pjax-js')
-    {{ \Backend::includePjaxScript('dashboard/script.js') }}
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-12">

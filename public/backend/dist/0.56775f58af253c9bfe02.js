@@ -1,0 +1,1 @@
+webpackJsonp([0],{3:function(e,t,n){"use strict";function a(){$("#example").DataTable()}Object.defineProperty(t,"__esModule",{value:!0}),t.init=a}});

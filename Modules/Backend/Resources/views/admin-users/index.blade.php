@@ -10,10 +10,6 @@
     </ol>
 @endsection
 
-@section('pjax-js')
-    {{ \Backend::includePjaxScript('admin-users/list.js') }}
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-12">

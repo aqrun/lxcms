@@ -86,4 +86,12 @@ class Backend
             include $realScriptFile;
         }
     }
+
+    public function assetHash(){
+        $file = __DIR__ . '/Resources/assets/hash.txt';
+        if(is_file($file)){
+            return file_get_contents($file);
+        }
+        return '';
+    }
 }
