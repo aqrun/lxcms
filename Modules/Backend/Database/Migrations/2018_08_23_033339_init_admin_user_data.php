@@ -40,6 +40,7 @@ class InitAdminUserData extends Migration
         $admin->username='administrator';
         $admin->password = bcrypt('123456');
         $admin->name = 'Administrator';
+        $admin->email = 'administrator@qq.com';
         $admin->remember_token = 'HuT8qIIscz';
         $admin->created_at = date('Y-m-d H:i:s');
         $admin->updated_at = date('Y-m-d H:i:s');

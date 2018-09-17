@@ -17,8 +17,15 @@ class CreateAdminTables extends Migration
             $table->string('username', 190)->unique();
             $table->string('password', 60);
             $table->string('name');
-            $table->string('avatar')->nullable();
-            $table->string('remember_token', 100)->nullable();
+            $table->string('email')->unique();
+            $table->string('mobile', 20)->default('');
+            $table->integer('weight')->default(0);
+            $table->tinyInteger('status')->default(1)->comment('status 0:frozen  1:active');
+            $table->tinyInteger('gender')->default(0)->comment('性别 0:男  1：女');
+            $table->integer('birthday')->default(0);
+            $table->string('avatar')->default('');
+            $table->string('timezone', 64)->default('');
+            $table->string('remember_token', 100)->default('');
             $table->timestamps();
         });
 

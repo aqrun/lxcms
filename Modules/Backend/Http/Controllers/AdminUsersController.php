@@ -12,4 +12,8 @@ class AdminUsersController extends BaseController
 
         return $this->view('backend::admin-users.index');
     }
+
+    public function indexData(){
+        return [];
+    }
 }

@@ -1,5 +1,37 @@
 
 import './style.scss';
+window.g = window.g || {};
+
+g.tableDefaultOptions = {
+    paging: true,
+    processing: true,
+    serverSide: true,
+    order: [[ 1, 'asc' ]],
+    lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+    dom: '<"row"<"col-sm-6"B><"col-sm-6"f>>'
+        + '<"row"<"col-sm-12"rt>>'
+        + '<"row"<"col-sm-7"il><"col-sm-5"p>>',
+    buttons: ['csv', 'excel', 'print']
+};
+
+//search
+g.applySearch = function($table, $search, $columnSearch){
+    function searchCallback(e){
+        if(e.keyCode === 13){
+            $table.search($search.val());
+            //console.log(t.column($s.parent().index()))
+            $columnSearch.each(function(i, n){
+                var $s = $(n);
+                $table.column($s.attr('name') + ':name').search($s.val());
+            });
+            $table.draw();
+        }
+    }
+    $search.off().on('keyup', searchCallback);
+    $columnSearch.on('keyup',searchCallback);
+};
+
+
 
 function sidebarClick(){
     $('.sidebar-menu li:not(.treeview) > a').on('click', function(){

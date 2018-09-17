@@ -7,6 +7,7 @@ use Modules\Backend\Entities\Menu;
 class Backend
 {
     public static $menuUri = '/';
+    public static $hash = null;
 
     public function getMenuUri()
     {
@@ -88,10 +89,12 @@ class Backend
     }
 
     public function assetHash(){
-        $file = __DIR__ . '/Resources/assets/hash.txt';
-        if(is_file($file)){
-            return file_get_contents($file);
+        if(null == static::$hash){
+            $file = __DIR__ . '/Resources/assets/hash.txt';
+            if(is_file($file)){
+                static::$hash = file_get_contents($file);
+            }
         }
-        return '';
+        return static::$hash;
     }
 }
