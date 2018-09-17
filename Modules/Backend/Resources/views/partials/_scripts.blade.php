@@ -25,7 +25,7 @@
 
 @yield('script')
 
-<script src="/backend/dist/app.{{ \Backend::assetHash() }}.js"></script>
+<script src="/static/backend/dist/app.{{ \Backend::assetHash() }}.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $(function(){

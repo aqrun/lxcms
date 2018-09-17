@@ -7,7 +7,7 @@ var hashFile = path.resolve(__dirname, 'Resources/assets/hash.txt');
 //开发目录
 var appDir = path.resolve(__dirname, relativePath);
 var htmlDir = path.resolve(__dirname, 'Resources/html');
-var backendDist = path.resolve(__dirname, '../../public/backend/dist');
+var backendDist = path.resolve(__dirname, '../../public/static/backend/dist');
 
 console.log(hashFile, appDir, htmlDir);
 
