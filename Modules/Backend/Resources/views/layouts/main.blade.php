@@ -46,6 +46,6 @@
 </div>
 <!-- ./wrapper -->
 
-
+<div id="react_container"></div>
 </body>
 </html>

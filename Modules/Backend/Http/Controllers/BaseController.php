@@ -10,9 +10,18 @@ class BaseController extends Controller
 {
     use DispatchesJobs, ValidatesRequests, AuthorizesRequests;
 
+    public $modalWidget;
+
+    public function __construct(){
+        $this->init();
+    }
+
+    public function init(){
+
+    }
+
     public function view($template, $params=[]){
         $defaultParams = [
-
         ];
         return view($template, array_merge($defaultParams, $params));
     }

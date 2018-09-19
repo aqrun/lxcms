@@ -4,7 +4,7 @@ namespace Modules\Backend\Http\Controllers;
 class AdminUsersController extends BaseController
 {
 
-    public function __construct(){
+    public function init(){
         self::setMenuUri('/admin-users');
     }
 
