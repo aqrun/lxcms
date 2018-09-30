@@ -1,19 +1,24 @@
 import csrf from 'app/common/csrf-token';
 
 export function pageList(){
-    var ajax = {
+    let headers = {};
+    headers[csrf.name] = csrf.token;
+    let ajax = {
         url: g.baseUrl + 'admin-users/index-data',
         type: 'POST',
+        headers: headers,
         data: function(d){
-            d[csrf.name] = csrf.token;
             return d;
         }
     };
-    var columns = [
+    let columns = [
         {data: 'id', name:'id',
             orderable:true, searchable: true},
         {data: 'avatar', name:'avatar',
-            orderable:true, searchable: true},
+            orderable:false, searchable: false, render:(data, type, row) => {
+                return '<div style="display: flex;align-content: center;justify-content: center;align-items: center;">'
+                    +'<img src="'+ data +'" style="max-width:30px"/></div>'
+            }},
         {data: 'username', name: 'username',
             render: function(data, type, row){return data;}},
         {data: 'name', name: 'name',
@@ -21,8 +26,8 @@ export function pageList(){
         {data: 'email', name:'email'},
         {data:'weight', name:'weight', orderable:true, searchable:false},
         {data:'status', name:'status', orderable:false, searchable:true},
-        {data:'created_at', name:'created_at', orderable:true, searchable:false},
-        {data:'updated_at', name:'updated_at', orderable:true, searchable:false},
+        {data:'created_str', name:'created_at', orderable:true, searchable:false},
+        {data:'updated_str', name:'updated_at', orderable:true, searchable:false},
         {
             data: 'id',name:'',
             orderable: false,

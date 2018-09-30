@@ -43,32 +43,6 @@
 
                     <table class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" width="100%">
                         <thead>
-                        <tr class="th_search_w">
-                            <th></th>
-                            <th></th>
-                            <th>
-                                <input type="text" class="form-control" name="username" placeholder="Search username">
-                            </th>
-                            <th>
-                                <input type="text" class="form-control" name="name" placeholder="Search name">
-                            </th>
-                            <th>
-                                <input type="text" class="form-control" name="email" placeholder="Search email">
-                            </th>
-                            <th>
-                                <input type="text" class="form-control" name="weight" placeholder="Search weight">
-                            </th>
-                            <th>
-                                <input type="text" class="form-control" name="status" placeholder="Search status">
-                            </th>
-                            <th>
-                                <input type="text" class="form-control" name="created_at" placeholder="Search created_at">
-                            </th>
-                            <th>
-                                <input type="text" class="form-control" name="updated_at" placeholder="Search updated_at">
-                            </th>
-                            <th></th>
-                        </tr>
                         <tr>
                             <th>ID</th>
                             <th>Avatar</th>
@@ -91,6 +65,22 @@
 
         </div>
     </div>
+
+    <script type="text/template" id="tpl_action">
+        <div class="btn-group btn_dropdownw">
+            <a type="button" class="btn btn-default btn-sm btn_edit"
+               href="" target="_blank">View</a>
+            <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="" class="btn_edit" target="_blank">Edit</a></li>
+                <li><a href=""
+                       data-id="[%=id%]" class="btn_delete">Delete</a></li>
+            </ul>
+        </div>
+    </script>
 
     @component('backend::components.modal', ['type'=>'danger'])
         @slot('title')
