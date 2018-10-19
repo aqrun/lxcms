@@ -1,6 +1,10 @@
 
+import { pagerGoto } from './pager-togo';
+
 import './style.scss';
 window.g = window.g || {};
+
+
 
 g.tableDefaultOptions = {
     paging: true,
@@ -10,7 +14,7 @@ g.tableDefaultOptions = {
     lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
     dom: '<"row"<"col-sm-6"B><"col-sm-6"f>>'
         + '<"row"<"col-sm-12"rt>>'
-        + '<"row"<"col-sm-7 table_info_w"il><"col-sm-5"p>>',
+        + '<"row"<"col-sm-7 table_info_w"il><"col-sm-5 table-pager-w"p<"pager-goto-w">>>',
     buttons: ['csv', 'excel', 'print']
 };
 
@@ -79,4 +83,6 @@ export function common(){
     sidebarClick();
 
     $('[data-toggle="popover"]').popover();
+    $.widget.bridge('uibutton', $.ui.button);
+    pagerGoto();
 }
