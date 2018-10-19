@@ -1,5 +1,6 @@
 
 import { pagerGoto } from './pager-togo';
+import './language';
 
 import './style.scss';
 window.g = window.g || {};

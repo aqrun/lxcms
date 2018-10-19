@@ -16,52 +16,7 @@
 
             {{-- TODO: add alert message --}}
 
-            <div class="box">
-                {{--box header start--}}
-                <div class="box-header with-border">
-                    <div class="pull-left">
-                        <a class="btn btn-sm btn-primary grid-refresh">
-                            <i class="fa fa-refresh"></i>  {{ __('Refresh') }}
-                        </a>
-                        <a class="btn btn-sm btn-dropbox btn-filter">
-                            <i class="fa fa-filter"></i>  {{ __('Filter') }}
-                        </a>
-                    </div>
-                    <div class="pull-right">
-                        <div class="btn-group pull-right" style="margin-right:10px">
-                            <a href="{{ \Backend::baseUrl('/admin-users/create') }}" class="btn btn-sm btn-success">
-                                <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ __('New') }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {{--box header end--}}
-
-                @include('backend::admin-users._index_filter')
-
-                <div class="box-body table-responsive no-padding1">
-
-                    <table class="table table-striped table-bordered table-hover" cellpadding="0" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Avatar</th>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Weight</th>
-                            <th>Status</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
-                            <th>@lang('admin.actions')</th>
-                        </tr>
-                        </thead>
-                    </table>
-
-                </div>
-
-
-            </div>
+            <div id="box_container"></div>
 
         </div>
     </div>

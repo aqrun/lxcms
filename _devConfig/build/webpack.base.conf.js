@@ -32,7 +32,8 @@ module.exports = {
   externals: {
     'react': 'React',
     'react-dom': 'ReactDOM',
-    'antd': 'antd'
+    'antd': 'antd',
+      'react-table':'ReactTable'
   },
   module: {
     loaders: [
@@ -64,7 +65,7 @@ module.exports = {
           fallback: 'style-loader',
           //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
           use: [
-            {loader: 'css-loader', options: {minimize: true, sourceMap:true, 
+            {loader: 'css-loader', options: {minimize: true, sourceMap:true,
               modules: true, importLoaders: 1,
               localIdentName: '[local]'
             }},
