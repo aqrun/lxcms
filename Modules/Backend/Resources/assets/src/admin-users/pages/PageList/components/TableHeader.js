@@ -13,7 +13,7 @@ export default (props) => {
             </div>
             <div className="pull-right">
                 <div className="btn-group pull-right" style={{marginRight:'10px'}}>
-                    <a href="{{ \Backend::baseUrl('/admin-users/create') }}" className="btn btn-sm btn-success">
+                    <a href={g.baseUrl + 'admin-users/create'} className="btn btn-sm btn-success">
                         <i className="fa fa-plus"></i>&nbsp;&nbsp;{__('New')}
                     </a>
                 </div>
