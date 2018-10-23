@@ -23,5 +23,6 @@
     window.g = {};
     g.baseUrl = '{{ \Backend::baseUrl() }}';
     g.menuUri='{{ \Backend::getMenuUri() }}';
+    g.locale = '{{ config('app.locale') }}';
 </script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery/dist/jquery.min.js"></script>

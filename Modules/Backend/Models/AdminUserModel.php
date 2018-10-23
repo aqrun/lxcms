@@ -23,22 +23,18 @@ class AdminUserModel extends BaseModel
         $totalData = $query->count();
         $totalFiltered = $totalData;
 
-        $limit = $request->input('length')??10;
-        $start = $request->input('start');
-        $order = $columns[$request->input('order.0.column')] ?? '';
-        $dir = $request->input('order.0.dir') ?? 'desc';
+        $pageSize = $request->input('pageSize')??10;
+        $page = $request->input('page');
+        $sorted = $request->input('sorted', []);
+        $filtered = $request->input('filtered', []);
 
-        $this->setFilter($query, $request);
+        $this->setFilter($query, $filtered);
         $totalFiltered = $query->count();
 
-        if(!empty($order)){
-            $query->orderBy($order,$dir);
-        }else{
-            $query->orderBy('created_at', $dir);
-        }
+        $this->setSorted($query, $sorted);
 
-        $list = $query->limit($limit)
-            ->offset($start)
+        $list = $query->limit($pageSize)
+            ->offset($page)
             ->get();
 
         $data = [];
@@ -66,15 +62,25 @@ class AdminUserModel extends BaseModel
 
 
         $json_data = array(
-            "draw"            => intval($request->input('draw')),
+            'page' => intval($page),
+            'pageSize' => intval($pageSize),
+            'pages' => intval($totalFiltered),
             "recordsTotal"    => intval($totalData),
-            "recordsFiltered" => intval($totalFiltered),
             "data"            => $data,
-           // 'current' => $current,
-            //'pageSize' => $pageSize,
         );
 
         return $json_data;
+    }
+
+    protected function setSorted(&$query, &$sorted)
+    {
+        if(empty($sorted)){
+            $query->orderBy('created_at', 'desc');
+        }else{
+            foreach ($sorted as $v){
+                $query->orderBy($v['id'], $v['desc']?'desc':'asc');
+            }
+        }
     }
 
     /**
@@ -82,21 +88,20 @@ class AdminUserModel extends BaseModel
      * @param $query
      * @param $filter
      */
-    protected function setFilter(&$query, &$request)
+    protected function setFilter(&$query, &$filtered)
     {
-        //search filter
-        $search = $request->input('search.value');
-        $query->when(!empty($search), function($query) use ($search) {
-            $query->where('username','LIKE',"%{$search}%")
-                ->orWhere('name', 'LIKE',"%{$search}%");
-        });
+        if(empty($filtered)) return;
+
+        foreach($filtered as $v){
+            $query->where($v['id'], 'LIKE', "%{$v['value']}%");
+        }
 
         //table filers
-        $inputColumns = $request->input('columns') ?? [];
-        foreach($inputColumns as $k=>$v){
-            $query->when(!empty($v['search']['value']), function($query) use ($v) {
-                $query->where($v['name'], 'LIKE', "%{$v['search']['value']}%");
-            });
-        }
+//        $inputColumns = $request->input('columns') ?? [];
+//        foreach($inputColumns as $k=>$v){
+//            $query->when(!empty($v['search']['value']), function($query) use ($v) {
+//                $query->where($v['name'], 'LIKE', "%{$v['search']['value']}%");
+//            });
+//        }
     }
 }

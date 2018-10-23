@@ -1,34 +1,41 @@
 
 import ReactTable from 'react-table';
-
+import { __ } from 'app/common/language';
 
 export default (props) => {
+    let { data, loading, pages } = props;
     return (
-        <div className="box-body table-responsive">
+        <div className="box-body table-responsive no-padding">
             <ReactTable
                 data={data}
                 loading={loading}
-                onFetchData={this.fetchData.bind(this)}
+                onFetchData={props.fetchData}
                 manual
                 pages={pages}
                 filterable
-                defaultFilterMethod={(filter, row) => {
-                    console.log(filter, row)
-                    return String(row[filter.id]).startsWith(filter.value)
-                }}
+                defaultSorted={[{id:'created_at',desc:true}]}
                 columns={[
-                    {Header: 'First Name', accessor: 'firstName',
-                        filterMethod: (filter, row) => {
-                            return row[filter.id].startsWith(filter.value) && row[filter.id].endsWith(filter.value);
+                    {Header: 'ID', accessor: 'id',width:30},
+                    {Header: __('Avatar'), accessor: 'avatar', width:60, Filter:()=>'',
+                        Cell: (row) => {
+                            return <img src={row['value']} style={{maxWidth:'50px'}}/>;
                         }
                     },
-                    {Header: 'Last Name', accessor: 'lastName'},
-                    {Header: 'Age', accessor:'age'},
-                    {Header: 'Phone', accessor:'phone'},
-                    {Header: 'Math', accessor:'math'},
-                    {Header: 'Location', accessor:'location'},
-                    {Header: 'Description', accessor:'description'},
-                    {Header: 'Actions', accessor: 'id', width: 110, Filter: ()=>'',
+                    {Header: __('Name'), accessor: 'name'},
+                    {Header: __('Username'), accessor:'username'},
+                    {Header: __('Email'), accessor:'email'},
+                    {Header: __('Weight'), accessor:'weight', width:60},
+                    {Header: __('Status'), accessor:'status', width:80,
+                        Cell: row => (
+                            <span>{row['value']?'Active':'Inactive'}</span>
+                        )
+                    },
+                    {Header: __('Created At'), accessor:'created_at',Filter:()=>'',
+                        Cell: row => {
+                            return row['original']['created_str'];
+                        }
+                    },
+                    {Header: __('Actions'), accessor: 'id', width: 110, Filter: ()=>'',
                         Cell: row => (
                             <div className="btn-group" href={row['lastName']}>
                                 <a className="btn btn-sm btn-success">
@@ -44,6 +51,11 @@ export default (props) => {
                         )
                     },
                 ]}
+                rowsText={__('table_rows')}
+                pageText={__('table_Page')}
+                ofText={__('table_of')}
+                nextText={__('table_Next')}
+                previousText={__('table_Previous')}
                 defaultPageSize={10}
                 className="-striped -highlight"
             />
