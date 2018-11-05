@@ -34,7 +34,7 @@ class AdminUserModel extends BaseModel
         $this->setSorted($query, $sorted);
 
         $list = $query->limit($pageSize)
-            ->offset($page)
+            ->offset(intval($page)* $pageSize)
             ->get();
 
         $data = [];

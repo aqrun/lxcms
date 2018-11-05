@@ -7,7 +7,7 @@ $factory->define(\Modules\Backend\Entities\AdminUser::class, function (Faker $fa
     $created_at = $faker->dateTimeThisMonth($updated_at);
     $username = $faker->unique()->userName;
     return [
-        'username' => $faker->unique()->userName,
+        'username' => $username,
         'password' => bcrypt('123456'),
         'name' => $username,
         'email' => $username. '@qq.com',
