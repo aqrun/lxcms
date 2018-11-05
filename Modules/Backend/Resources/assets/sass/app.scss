@@ -10,3 +10,35 @@
   //border-top-color: #dd4b39;
   //border-left-color: #dd4b39;
 }
+
+.admin-user-content {
+  .user-info {
+    .thumbnail {
+      margin-bottom: 0px;
+    }
+  }
+
+  .nav-tabs {
+    margin-bottom: 20px;
+
+    >li.active > a {
+      background-color: #fff;
+    }
+  }
+
+  .list-group {
+    .list-group-item {
+      border: none;
+      margin-bottom: 0px;
+      border-bottom: 1px solid #efefef;
+
+      .meta {
+        color: #b3b3b3;
+      }
+    }
+  }
+
+  .pagination {
+    margin: 12px 0;
+  }
+}

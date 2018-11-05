@@ -17,7 +17,7 @@ Route::group([
 
 
     // admin users
-    Route::get('/admin-users', 'AdminUsersController@index')->name('admin-users.index');
+    Route::resource('admin-users', 'AdminUsersController');
     Route::post('/admin-users/index-data', 'AdminUsersController@indexData')->name('admin-users.index-data');
 
     // menus

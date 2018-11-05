@@ -41,7 +41,8 @@ export default (props) => {
                     {Header: __('Actions'), accessor: 'id', width: 110, Filter: ()=>'',
                         Cell: row => (
                             <div className="btn-group">
-                                <a className="btn btn-sm btn-success" href={row['lastName']}>
+                                <a className="btn btn-sm btn-success"
+                                   href={g.baseUrl + 'admin-users/' + row.value}>
                                     <i className="fa fa-eye"></i>
                                 </a>
                                 <a className="btn btn-sm btn-info">

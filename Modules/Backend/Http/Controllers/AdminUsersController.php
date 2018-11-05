@@ -3,6 +3,7 @@ namespace Modules\Backend\Http\Controllers;
 
 use Modules\Backend\Models\AdminUserModel;
 use Illuminate\Http\Request;
+use Modules\Backend\Entities\AdminUser;
 
 class AdminUsersController extends BaseController
 {
@@ -23,5 +24,15 @@ class AdminUsersController extends BaseController
         $model = new AdminUserModel();
         $data = $model->getList($request);
         return $data;
+    }
+
+    public function show(AdminUser $adminUser)
+    {
+        return $this->view('backend::admin-users.show', compact('adminUser'));
+    }
+
+    public function create()
+    {
+        return $this->view('backend::admin-users.create');
     }
 }
