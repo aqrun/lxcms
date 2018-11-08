@@ -15,7 +15,7 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">{{ __('MAIN NAVIGATION') }}</li>
+      <li class="header">@lang('backend::admin.main_navigation')</li>
       @each('backend::partials._sidebar_menu', Backend::menu(), 'item')
     </ul>
   </section>

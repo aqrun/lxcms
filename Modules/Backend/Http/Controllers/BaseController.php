@@ -27,7 +27,7 @@ class BaseController extends Controller
     }
 
     public static function setMenuUri($uri='/'){
-        \Backend::setMenuUri(\Backend::baseUrl($uri));
+        \Backend::setMenuUri(\Backend::baseUrl($uri, false));
     }
 
 }

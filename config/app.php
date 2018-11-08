@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'zh-CN',
+    'locale' => 'zh',
 
     /*
     |--------------------------------------------------------------------------
@@ -146,7 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        //Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Modules\Backend\Providers\PermissionServiceProvider::class,
         Modules\Backend\Providers\BackendServiceProvider::class,
+
     ],
 
     /*
@@ -207,6 +208,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Date' => Jenssegers\Date\Date::class,
+        //'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
         'Backend' => Modules\Backend\Facades\Backend::class,
 
     ],

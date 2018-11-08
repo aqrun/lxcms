@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.33 on 2018-08-28 03:11:48.
+ * Generated for Laravel 5.6.33 on 2018-11-08 08:19:00.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13067,7 +13067,7 @@ namespace Jenssegers\Date {
  
 }
 
-namespace App\Facades { 
+namespace Modules\Backend\Facades { 
 
     class Backend {
         
@@ -13078,7 +13078,7 @@ namespace App\Facades {
          */ 
         public static function getMenuUri()
         {
-            return \App\Helpers\Backend::getMenuUri();
+            return \Modules\Backend\Backend::getMenuUri();
         }
         
         /**
@@ -13088,7 +13088,17 @@ namespace App\Facades {
          */ 
         public static function setMenuUri($uri)
         {
-            return \App\Helpers\Backend::setMenuUri($uri);
+            return \Modules\Backend\Backend::setMenuUri($uri);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function path($path)
+        {
+            return \Modules\Backend\Backend::path($path);
         }
         
         /**
@@ -13098,7 +13108,7 @@ namespace App\Facades {
          */ 
         public static function guardName()
         {
-            return \App\Helpers\Backend::guardName();
+            return \Modules\Backend\Backend::guardName();
         }
         
         /**
@@ -13108,7 +13118,7 @@ namespace App\Facades {
          */ 
         public static function auth()
         {
-            return \App\Helpers\Backend::auth();
+            return \Modules\Backend\Backend::auth();
         }
         
         /**
@@ -13119,7 +13129,7 @@ namespace App\Facades {
          */ 
         public static function menu()
         {
-            return \App\Helpers\Backend::menu();
+            return \Modules\Backend\Backend::menu();
         }
         
         /**
@@ -13130,7 +13140,7 @@ namespace App\Facades {
          */ 
         public static function title()
         {
-            return \App\Helpers\Backend::title();
+            return \Modules\Backend\Backend::title();
         }
         
         /**
@@ -13141,7 +13151,7 @@ namespace App\Facades {
          */ 
         public static function user()
         {
-            return \App\Helpers\Backend::user();
+            return \Modules\Backend\Backend::user();
         }
         
         /**
@@ -13153,7 +13163,7 @@ namespace App\Facades {
          */ 
         public static function baseUrl($path = '')
         {
-            return \App\Helpers\Backend::baseUrl($path);
+            return \Modules\Backend\Backend::baseUrl($path);
         }
         
         /**
@@ -13164,7 +13174,17 @@ namespace App\Facades {
          */ 
         public static function includePjaxScript($templateFile)
         {
-            return \App\Helpers\Backend::includePjaxScript($templateFile);
+            return \Modules\Backend\Backend::includePjaxScript($templateFile);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function assetHash()
+        {
+            return \Modules\Backend\Backend::assetHash();
         }
          
     }
@@ -13351,6 +13371,920 @@ namespace Encore\Admin\Facades {
         public static function extend($name, $class)
         {
             \Encore\Admin\Admin::extend($name, $class);
+        }
+         
+    }
+ 
+}
+
+namespace Mcamara\LaravelLocalization\Facades { 
+
+    class LaravelLocalization {
+        
+        /**
+         * Set and return current locale.
+         *
+         * @param string $locale Locale to set the App to (optional)
+         * @return string Returns locale (if route has any) or null (if route does not have a locale)
+         * @static 
+         */ 
+        public static function setLocale($locale = null)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setLocale($locale);
+        }
+        
+        /**
+         * Check if $locale is default locale and supposed to be hidden in url
+         *
+         * @param string $locale Locale to be checked
+         * @return boolean Returns true if above requirement are met, otherwise false
+         * @static 
+         */ 
+        public static function isHiddenDefault($locale)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::isHiddenDefault($locale);
+        }
+        
+        /**
+         * Set and return supported locales.
+         *
+         * @param array $locales Locales that the App supports
+         * @static 
+         */ 
+        public static function setSupportedLocales($locales)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setSupportedLocales($locales);
+        }
+        
+        /**
+         * Returns an URL adapted to $locale or current locale.
+         *
+         * @param string $url URL to adapt. If not passed, the current url would be taken.
+         * @param string|bool $locale Locale to adapt, false to remove locale
+         * @throws UnsupportedLocaleException
+         * @return string URL translated
+         * @static 
+         */ 
+        public static function localizeURL($url = null, $locale = null)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::localizeURL($url, $locale);
+        }
+        
+        /**
+         * Returns an URL adapted to $locale.
+         *
+         * @param string|bool $locale Locale to adapt, false to remove locale
+         * @param string|false $url URL to adapt in the current language. If not passed, the current url would be taken.
+         * @param array $attributes Attributes to add to the route, if empty, the system would try to extract them from the url.
+         * @param bool $forceDefaultLocation Force to show default location even hideDefaultLocaleInURL set as TRUE
+         * @throws SupportedLocalesNotDefined
+         * @throws UnsupportedLocaleException
+         * @return string|false URL translated, False if url does not exist
+         * @static 
+         */ 
+        public static function getLocalizedURL($locale = null, $url = null, $attributes = array(), $forceDefaultLocation = false)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getLocalizedURL($locale, $url, $attributes, $forceDefaultLocation);
+        }
+        
+        /**
+         * Returns an URL adapted to the route name and the locale given.
+         *
+         * @param string|bool $locale Locale to adapt
+         * @param string $transKeyName Translation key name of the url to adapt
+         * @param array $attributes Attributes for the route (only needed if transKeyName needs them)
+         * @param bool $forceDefaultLocation Force to show default location even hideDefaultLocaleInURL set as TRUE
+         * @throws SupportedLocalesNotDefined
+         * @throws UnsupportedLocaleException
+         * @return string|false URL translated
+         * @static 
+         */ 
+        public static function getURLFromRouteNameTranslated($locale, $transKeyName, $attributes = array(), $forceDefaultLocation = false)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getURLFromRouteNameTranslated($locale, $transKeyName, $attributes, $forceDefaultLocation);
+        }
+        
+        /**
+         * It returns an URL without locale (if it has it)
+         * Convenience function wrapping getLocalizedURL(false).
+         *
+         * @param string|false $url URL to clean, if false, current url would be taken
+         * @return string URL with no locale in path
+         * @static 
+         */ 
+        public static function getNonLocalizedURL($url = null)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getNonLocalizedURL($url);
+        }
+        
+        /**
+         * Returns default locale.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultLocale()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getDefaultLocale();
+        }
+        
+        /**
+         * Return an array of all supported Locales.
+         *
+         * @throws SupportedLocalesNotDefined
+         * @return array 
+         * @static 
+         */ 
+        public static function getSupportedLocales()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getSupportedLocales();
+        }
+        
+        /**
+         * Return an array of all supported Locales but in the order the user
+         * has specified in the config file. Useful for the language selector.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getLocalesOrder()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getLocalesOrder();
+        }
+        
+        /**
+         * Returns current locale name.
+         *
+         * @return string current locale name
+         * @static 
+         */ 
+        public static function getCurrentLocaleName()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleName();
+        }
+        
+        /**
+         * Returns current locale native name.
+         *
+         * @return string current locale native name
+         * @static 
+         */ 
+        public static function getCurrentLocaleNative()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleNative();
+        }
+        
+        /**
+         * Returns current locale direction.
+         *
+         * @return string current locale direction
+         * @static 
+         */ 
+        public static function getCurrentLocaleDirection()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleDirection();
+        }
+        
+        /**
+         * Returns current locale script.
+         *
+         * @return string current locale script
+         * @static 
+         */ 
+        public static function getCurrentLocaleScript()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleScript();
+        }
+        
+        /**
+         * Returns current language's native reading.
+         *
+         * @return string current language's native reading
+         * @static 
+         */ 
+        public static function getCurrentLocaleNativeReading()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleNativeReading();
+        }
+        
+        /**
+         * Returns current language.
+         *
+         * @return string current language
+         * @static 
+         */ 
+        public static function getCurrentLocale()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocale();
+        }
+        
+        /**
+         * Returns current regional.
+         *
+         * @return string current regional
+         * @static 
+         */ 
+        public static function getCurrentLocaleRegional()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleRegional();
+        }
+        
+        /**
+         * Returns supported languages language key.
+         *
+         * @return array keys of supported languages
+         * @static 
+         */ 
+        public static function getSupportedLanguagesKeys()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getSupportedLanguagesKeys();
+        }
+        
+        /**
+         * Check if Locale exists on the supported locales array.
+         *
+         * @param string|bool $locale string|bool Locale to be checked
+         * @throws SupportedLocalesNotDefined
+         * @return bool is the locale supported?
+         * @static 
+         */ 
+        public static function checkLocaleInSupportedLocales($locale)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::checkLocaleInSupportedLocales($locale);
+        }
+        
+        /**
+         * Set current route name.
+         *
+         * @param string $routeName current route name
+         * @static 
+         */ 
+        public static function setRouteName($routeName)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setRouteName($routeName);
+        }
+        
+        /**
+         * Translate routes and save them to the translated routes array (used in the localize route filter).
+         *
+         * @param string $routeName Key of the translated string
+         * @return string Translated string
+         * @static 
+         */ 
+        public static function transRoute($routeName)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::transRoute($routeName);
+        }
+        
+        /**
+         * Returns the translation key for a given path.
+         *
+         * @param string $path Path to get the key translated
+         * @return string|false Key for translation, false if not exist
+         * @static 
+         */ 
+        public static function getRouteNameFromAPath($path)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getRouteNameFromAPath($path);
+        }
+        
+        /**
+         * Returns the config repository for this instance.
+         *
+         * @return \Mcamara\LaravelLocalization\Repository Configuration repository
+         * @static 
+         */ 
+        public static function getConfigRepository()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getConfigRepository();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function hideUrlAndAcceptHeader()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::hideUrlAndAcceptHeader();
+        }
+        
+        /**
+         * Returns the translation key for a given path.
+         *
+         * @return bool Returns value of hideDefaultLocaleInURL in config.
+         * @static 
+         */ 
+        public static function hideDefaultLocaleInURL()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::hideDefaultLocaleInURL();
+        }
+        
+        /**
+         * Create an url from the uri.
+         *
+         * @param string $uri Uri
+         * @return string Url for the given uri
+         * @static 
+         */ 
+        public static function createUrlFromUri($uri)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::createUrlFromUri($uri);
+        }
+        
+        /**
+         * Sets the base url for the site.
+         *
+         * @param string $url Base url for the site
+         * @static 
+         */ 
+        public static function setBaseUrl($url)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setBaseUrl($url);
+        }
+        
+        /**
+         * Returns serialized translated routes for caching purposes.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getSerializedTranslatedRoutes()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getSerializedTranslatedRoutes();
+        }
+        
+        /**
+         * Sets the translated routes list.
+         * 
+         * Only useful from a cached routes context.
+         *
+         * @param string $serializedRoutes
+         * @static 
+         */ 
+        public static function setSerializedTranslatedRoutes($serializedRoutes)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setSerializedTranslatedRoutes($serializedRoutes);
+        }
+         
+    }
+ 
+}
+
+namespace Nwidart\Modules\Facades { 
+
+    class Module {
+        
+        /**
+         * Add other module location.
+         *
+         * @param string $path
+         * @return $this 
+         * @static 
+         */ 
+        public static function addLocation($path)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::addLocation($path);
+        }
+        
+        /**
+         * Get all additional paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getPaths()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getPaths();
+        }
+        
+        /**
+         * Get scanned modules paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getScanPaths()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getScanPaths();
+        }
+        
+        /**
+         * Get & scan all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function scan()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::scan();
+        }
+        
+        /**
+         * Get all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function all()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::all();
+        }
+        
+        /**
+         * Get cached modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCached()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getCached();
+        }
+        
+        /**
+         * Get all modules as collection instance.
+         *
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function toCollection()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::toCollection();
+        }
+        
+        /**
+         * Get modules by status.
+         *
+         * @param $status
+         * @return array 
+         * @static 
+         */ 
+        public static function getByStatus($status)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getByStatus($status);
+        }
+        
+        /**
+         * Determine whether the given module exist.
+         *
+         * @param $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function has($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::has($name);
+        }
+        
+        /**
+         * Get list of enabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allEnabled()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::allEnabled();
+        }
+        
+        /**
+         * Get list of disabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allDisabled()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::allDisabled();
+        }
+        
+        /**
+         * Get count from all modules.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function count()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::count();
+        }
+        
+        /**
+         * Get all ordered modules.
+         *
+         * @param string $direction
+         * @return array 
+         * @static 
+         */ 
+        public static function getOrdered($direction = 'asc')
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getOrdered($direction);
+        }
+        
+        /**
+         * Get a module path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getPath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getPath();
+        }
+        
+        /**
+         * Register the modules.
+         *
+         * @static 
+         */ 
+        public static function register()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::register();
+        }
+        
+        /**
+         * Boot the modules.
+         *
+         * @static 
+         */ 
+        public static function boot()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::boot();
+        }
+        
+        /**
+         * Find a specific module.
+         *
+         * @param $name
+         * @return mixed|void 
+         * @static 
+         */ 
+        public static function find($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::find($name);
+        }
+        
+        /**
+         * Find a specific module by its alias.
+         *
+         * @param $alias
+         * @return mixed|void 
+         * @static 
+         */ 
+        public static function findByAlias($alias)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::findByAlias($alias);
+        }
+        
+        /**
+         * Find all modules that are required by a module. If the module cannot be found, throw an exception.
+         *
+         * @param $name
+         * @return array 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function findRequirements($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::findRequirements($name);
+        }
+        
+        /**
+         * Find a specific module, if there return that, otherwise throw exception.
+         *
+         * @param $name
+         * @return \Module 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function findOrFail($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::findOrFail($name);
+        }
+        
+        /**
+         * Get all modules as laravel collection instance.
+         *
+         * @param $status
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function collections($status = 1)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::collections($status);
+        }
+        
+        /**
+         * Get module path for a specific module.
+         *
+         * @param $module
+         * @return string 
+         * @static 
+         */ 
+        public static function getModulePath($module)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getModulePath($module);
+        }
+        
+        /**
+         * Get asset path for a specific module.
+         *
+         * @param $module
+         * @return string 
+         * @static 
+         */ 
+        public static function assetPath($module)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::assetPath($module);
+        }
+        
+        /**
+         * Get a specific config data from a configuration file.
+         *
+         * @param $key
+         * @param null $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function config($key, $default = null)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::config($key, $default);
+        }
+        
+        /**
+         * Get storage path for module used.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getUsedStoragePath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getUsedStoragePath();
+        }
+        
+        /**
+         * Set module used for cli session.
+         *
+         * @param $name
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function setUsed($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::setUsed($name);
+        }
+        
+        /**
+         * Forget the module used for cli session.
+         *
+         * @static 
+         */ 
+        public static function forgetUsed()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::forgetUsed();
+        }
+        
+        /**
+         * Get module used for cli session.
+         *
+         * @return string 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function getUsedNow()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getUsedNow();
+        }
+        
+        /**
+         * Get laravel filesystem instance.
+         *
+         * @return \Illuminate\Filesystem\Filesystem 
+         * @static 
+         */ 
+        public static function getFiles()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getFiles();
+        }
+        
+        /**
+         * Get module assets path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAssetsPath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getAssetsPath();
+        }
+        
+        /**
+         * Get asset url from a specific module.
+         *
+         * @param string $asset
+         * @return string 
+         * @throws InvalidAssetPath
+         * @static 
+         */ 
+        public static function asset($asset)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::asset($asset);
+        }
+        
+        /**
+         * Determine whether the given module is activated.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function enabled($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::enabled($name);
+        }
+        
+        /**
+         * Determine whether the given module is not activated.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function disabled($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::disabled($name);
+        }
+        
+        /**
+         * Enabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function enable($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::enable($name);
+        }
+        
+        /**
+         * Disabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function disable($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::disable($name);
+        }
+        
+        /**
+         * Delete a specific module.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function delete($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::delete($name);
+        }
+        
+        /**
+         * Update dependencies for the specified module.
+         *
+         * @param string $module
+         * @static 
+         */ 
+        public static function update($module)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::update($module);
+        }
+        
+        /**
+         * Install the specified module.
+         *
+         * @param string $name
+         * @param string $version
+         * @param string $type
+         * @param bool $subtree
+         * @return \Symfony\Component\Process\Process 
+         * @static 
+         */ 
+        public static function install($name, $version = 'dev-master', $type = 'composer', $subtree = false)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::install($name, $version, $type, $subtree);
+        }
+        
+        /**
+         * Get stub path.
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getStubPath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getStubPath();
+        }
+        
+        /**
+         * Set stub path.
+         *
+         * @param string $stubPath
+         * @return $this 
+         * @static 
+         */ 
+        public static function setStubPath($stubPath)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::setStubPath($stubPath);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::hasMacro($name);
         }
          
     }
@@ -15705,9 +16639,13 @@ namespace  {
 
     class Date extends \Jenssegers\Date\Date {}
 
-    class Backend extends \App\Facades\Backend {}
+    class Backend extends \Modules\Backend\Facades\Backend {}
 
     class Admin extends \Encore\Admin\Facades\Admin {}
+
+    class LaravelLocalization extends \Mcamara\LaravelLocalization\Facades\LaravelLocalization {}
+
+    class Module extends \Nwidart\Modules\Facades\Module {}
  
 }
 

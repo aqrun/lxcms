@@ -15,7 +15,23 @@
 
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
-
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-language"></i>&nbsp;{{LaravelLocalization::getCurrentLocaleNative()}}
+          </a>
+          <ul class="dropdown-menu">
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+              @if(LaravelLocalization::getCurrentLocale() != $localeCode)
+              <li>
+                <a rel="alternate" hreflang="{{ $localeCode }}"
+                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                  {{ $properties['native'] }}
+                </a>
+              </li>
+              @endif
+            @endforeach
+          </ul>
+        </li>
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">

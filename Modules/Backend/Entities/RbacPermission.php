@@ -198,7 +198,8 @@ class RbacPermission extends Model implements PermissionContract
         $method = $this->http_method;
 
         $matches = array_map(function ($path) use ($method) {
-            $path = trim(config('backend.prefix'), '/').$path;
+            //$path = trim(config('backend.prefix'), '/').$path;
+            $path = trim(\Backend::prefix(), '/'). $path;
 
             if (Str::contains($path, ':')) {
                 list($method, $path) = explode(':', $path);

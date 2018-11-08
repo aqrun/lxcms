@@ -37,7 +37,8 @@ class Backend
      */
     public function menu()
     {
-        return (new Menu())->toTree($this->guardName());
+        $lang = \LaravelLocalization::getCurrentLocale();
+        return (new Menu())->toTree($this->guardName(), $lang);
     }
 
     /**
@@ -64,12 +65,19 @@ class Backend
      * Get backend url.
      *
      * @param string $path
+     * @param $withLanguage
      *
      * @return string
      */
-    public function baseUrl($path = '')
+    public function baseUrl($path = '', $withLanguage=true)
     {
-        $prefix = '/'.trim(config('backend.prefix'), '/');
+        if($withLanguage){
+            $lang = \LaravelLocalization::getCurrentLocale();
+            $prefix = '/'. $lang. '/'.trim(config('backend.prefix'), '/');
+        }else{
+            $prefix = '/'.trim(config('backend.prefix'), '/');
+        }
+
 
         $prefix = ($prefix == '/') ? '' : $prefix;
 
@@ -96,5 +104,22 @@ class Backend
             }
         }
         return static::$hash;
+    }
+
+    /**
+     * get current url prefix
+     */
+    public function prefix()
+    {
+        $backendPrefix = config('backend.prefix');
+
+        $path = request()->path();
+        $pos = strpos($path, $backendPrefix);
+        $lang = trim(substr($path, 0, $pos), '/');
+        if(empty($lang)){
+            return $backendPrefix;
+        }else{
+            return $lang . '/' . $backendPrefix;
+        }
     }
 }

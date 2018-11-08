@@ -128,12 +128,13 @@ trait ModelTree
     /**
      * Format data to tree like array.
      * @param string $guardName
+     * @param string lang
      *
      * @return array
      */
-    public function toTree($guardName='web')
+    public function toTree($guardName='web', $lang)
     {
-        return $this->buildNestedArray([], 0, $guardName);
+        return $this->buildNestedArray([], 0, $guardName, $lang);
     }
 
     /**
@@ -142,15 +143,16 @@ trait ModelTree
      * @param array $nodes
      * @param int   $parentId
      * @param string $guardName
+     * @param string $lang
      *
      * @return array
      */
-    protected function buildNestedArray(array $nodes = [], $parentId = 0, $guardName='web')
+    protected function buildNestedArray(array $nodes = [], $parentId = 0, $guardName='web', $lang='en')
     {
         $branch = [];
 
         if (empty($nodes)) {
-            $nodes = $this->allNodes($guardName);
+            $nodes = $this->allNodes($guardName, $lang);
         }
 
         foreach ($nodes as $node) {
@@ -172,10 +174,11 @@ trait ModelTree
      * Get all elements.
      *
      * @param string $guardName
+     * @param string $lang
      *
      * @return mixed
      */
-    public function allNodes($guardName='web')
+    public function allNodes($guardName='web', $lang='en')
     {
         $orderColumn = DB::getQueryGrammar()->wrap($this->orderColumn);
         $byOrder = $orderColumn.' = 0,'.$orderColumn;
@@ -185,8 +188,16 @@ trait ModelTree
         if ($this->queryCallback instanceof \Closure) {
             $self = call_user_func($this->queryCallback, $self);
         }
-
-        return $self->where('guard_name',$guardName)->orderByRaw($byOrder)->get()->toArray();
+        var_dump($lang);exit;
+        if(!empty($lang)){
+            $query = $self->where('guard_name',$guardName)
+                ->where('lang', $lang);
+        }else{
+            $query = $self->where('guard_name',$guardName);
+        }
+        return $query->orderByRaw($byOrder)
+            ->get()
+            ->toArray();
     }
 
     /**

@@ -33,8 +33,8 @@ class Authenticate
     protected function shouldPassThrough($request)
     {
         $excepts = [
-            'backend/login',
-            'backend/logout',
+            'zh/backend/login',
+            'zh/backend/logout',
         ];
 
         foreach ($excepts as $except) {

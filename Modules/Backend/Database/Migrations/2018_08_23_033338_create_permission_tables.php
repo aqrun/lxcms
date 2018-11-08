@@ -81,6 +81,7 @@ class CreatePermissionTables extends Migration
             $table->integer('parent_id')->default(0);
             $table->integer('order')->default(0);
             $table->string('title', 50);
+            $table->string('langcode', 32)->default('en');
             $table->string('icon', 50);
             $table->string('uri', 50)->nullable();
             $table->string('guard_name', 32);
