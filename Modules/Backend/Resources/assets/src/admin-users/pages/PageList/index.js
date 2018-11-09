@@ -10,7 +10,7 @@ import { initLanguage, __ } from 'app/common/language';
 import query from 'app/utils/query';
 
 import csrf from 'app/common/csrf-token';
-import {generateEnUS, generateZhCN } from 'app/admin-users/languages';
+import {generateEn, generateZh } from 'app/admin-users/languages';
 import './style.scss';
 
 class App extends React.Component
@@ -79,8 +79,8 @@ class App extends React.Component
 
 export function PageList(){
     initLanguage({
-        'en-US': generateEnUS(),
-        'zh-CN': generateZhCN(),
+        'en': generateEn(),
+        'zh': generateZh(),
     });
     ReactDOM.render(<App/>, document.getElementById('box_container'));
 }

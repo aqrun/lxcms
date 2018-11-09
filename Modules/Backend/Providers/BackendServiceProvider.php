@@ -54,6 +54,8 @@ class BackendServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        \Carbon\Carbon::setLocale(\LaravelLocalization::getCurrentLocale());
     }
 
     /**

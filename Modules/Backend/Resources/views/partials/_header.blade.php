@@ -1,10 +1,10 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="index2.html" class="logo">
+  <a href="{{ \Backend::baseUrl() }}" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
-    <span class="logo-mini"><b>A</b>LT</span>
+    <span class="logo-mini"><b>LX</b></span>
     <!-- logo for regular state and mobile devices -->
-    <span class="logo-lg"><b>Admin</b>LTE</span>
+    <span class="logo-lg"><b>LX</b>CMS</span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top">
@@ -37,7 +37,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="{{ \Backend::user()->avatar??config('backend.anonymous_avatar') }}" class="user-image"
                  alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
+            <span class="hidden-xs">{{ Backend::user()->name }}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -45,17 +45,18 @@
               <img src="{{ \Backend::user()->avatar??config('backend.anonymous_avatar') }}" class="img-circle" alt="User Image">
 
               <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
+                {{ Backend::user()->name }} - {{ \Backend::user()->roles[0]->name }}
+                <small>@lang('backend::admin.member_since') {{ Backend::user()->created_at->toFormattedDateString() }}</small>
               </p>
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <a href="#" class="btn btn-default btn-flat">@lang('backend::admin.profile')</a>
               </div>
               <div class="pull-right">
-                <a href="#" onclick="javascript:$('#frm_header_logout').submit()" class="btn btn-default btn-flat">Sign out</a>
+                <a href="#" onclick="javascript:$('#frm_header_logout').submit()"
+                   class="btn btn-default btn-flat">@lang('backend::admin.sign_out')</a>
                 <form style="display:none" id="frm_header_logout"
                       action="{{ \Backend::baseUrl('/logout')  }}"
                       method="post">

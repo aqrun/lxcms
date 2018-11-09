@@ -1,2 +1,2 @@
-export { default as generateEnUS } from './en-US';
-export { default as generateZhCN } from './zh-CN';
+export { default as generateEn } from './en';
+export { default as generateZh } from './zh';

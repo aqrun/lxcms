@@ -4,10 +4,10 @@ import i18next from 'i18next';
 export function initLanguage(options){
     i18next.init({
         lng: g.locale,
-        fallbackLng: 'en-US',
+        fallbackLng: 'en',
         resources: {
-            'en-US': {translation: options['en-US']},
-            'zh-CN': {translation: options['zh-CN']},
+            'en': {translation: options['en']},
+            'zh': {translation: options['zh']},
         },
         debug: true
     }, (err, t) => {
