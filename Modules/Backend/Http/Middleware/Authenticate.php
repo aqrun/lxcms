@@ -33,18 +33,16 @@ class Authenticate
     protected function shouldPassThrough($request)
     {
         $excepts = [
-            'zh/backend/login',
-            'zh/backend/logout',
+            'backend/login',
+            'backend/logout',
         ];
 
-        foreach ($excepts as $except) {
-            if ($except !== '/') {
-                $except = trim($except, '/');
-            }
-
-            if ($request->is($except)) {
-                return true;
-            }
+        $uri = $request->getPathInfo();
+        $keys = \LaravelLocalization::getSupportedLanguagesKeys();
+        $pattern = '/^\/?('.implode('|', $keys) . ')\/?/';
+        $uri = trim(preg_replace($pattern, '',$uri),'/');
+        if(in_array($uri, $excepts)){
+            return true;
         }
 
         return false;

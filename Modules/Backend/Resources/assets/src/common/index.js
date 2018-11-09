@@ -48,7 +48,8 @@ function sidebarClick(){
     });
 }
 function sidebarInitActive(){
-    var $s = $('a[href="'+ g.menuUri +'"]');
+    let uri = '/' + g.locale + g.menuUri;
+    let $s = $('a[href="'+ uri +'"]');
     $s.parent().siblings().removeClass('active');
     $s.parent().addClass('active');
     $s.parents('.treeview').addClass('active')

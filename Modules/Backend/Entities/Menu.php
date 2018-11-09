@@ -1,15 +1,14 @@
 <?php
 namespace Modules\Backend\Entities;
 
-use Modules\Backend\Entities\Traits\ModelTree;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 
 class Menu extends BaseEntity
 {
 
-    use ModelTree {
-        ModelTree::boot as treeBoot;
+    use Traits\ModelTree {
+        Traits\ModelTree::boot as treeBoot;
     }
 
     /**
@@ -17,7 +16,7 @@ class Menu extends BaseEntity
      *
      * @var array
      */
-    protected $fillable = ['parent_id', 'order', 'title', 'icon', 'uri', 'guard_name'];
+    protected $fillable = ['parent_id', 'order', 'name', 'icon', 'uri', 'guard_name'];
 
     /**
      * A Menu belongs to many roles.
@@ -31,17 +30,29 @@ class Menu extends BaseEntity
         return $this->belongsToMany(RbacRole::class, $pivotTable, 'menu_id', 'rbac_role_id');
     }
 
+    public function menusData()
+    {
+
+    }
+
     /**
      * @return array
      */
-    public function allNodes() : array
+    public function allNodes($guardName) : array
     {
+        $lang = \LaravelLocalization::getCurrentLocale();
+
         $connection = config('database.default');
         $orderColumn = DB::connection($connection)->getQueryGrammar()->wrap($this->orderColumn);
 
         $byOrder = $orderColumn.' = 0,'.$orderColumn;
 
-        return static::with('roles')->orderByRaw($byOrder)->get()->toArray();
+        $data = static::with('roles')
+            ->leftJoin('menus_data', 'menus_data.menu_id', '=', 'menus.id')
+            ->where('menus_data.langcode', $lang)
+            ->orderByRaw($byOrder)->get()->toArray();
+//        \Debugbar::info($data);
+        return $data;
     }
 
     /**

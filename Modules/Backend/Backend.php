@@ -37,8 +37,7 @@ class Backend
      */
     public function menu()
     {
-        $lang = \LaravelLocalization::getCurrentLocale();
-        return (new Menu())->toTree($this->guardName(), $lang);
+        return (new Menu())->toTree($this->guardName());
     }
 
     /**

@@ -14,6 +14,17 @@ class CmsInit extends Migration
     public function up()
     {
 
+        Schema::create('languages', function(Blueprint $table){
+            $table->increments('id');
+            $table->string('langcode', 12);
+            $table->string('name', 128);
+            $table->string('script', 64)->default('');
+            $table->string('native', 128)->default('');
+            $table->string('regional', 128)->default('');
+
+            $table->timestamps();
+        });
+
         Schema::create('voc_taxonomies', function(Blueprint $table){
             $table->increments('id');
             $table->string('vid', 64)->comment('machine name');
@@ -84,7 +95,7 @@ class CmsInit extends Migration
      */
     public function down()
     {
-
+        Schema::dropIfExists('languages');
         Schema::dropIfExists('voc_taxonomies');
         Schema::dropIfExists('voc_terms');
         Schema::dropIfExists('files');

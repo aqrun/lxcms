@@ -7,6 +7,8 @@ use Modules\Backend\Entities\AdminUser;
 use Modules\Backend\Entities\RbacRole;
 use Modules\Backend\Entities\RbacPermission;
 use Modules\Backend\Entities\Menu;
+use Modules\Backend\Entities\Language;
+use \Modules\Backend\Entities\MenusData;
 
 class InitAdminUserData extends Migration
 {
@@ -19,6 +21,7 @@ class InitAdminUserData extends Migration
      */
     public function up()
     {
+        $this->addLanguages();
         $this->createdAdmin();
         $this->createRole();
         $this->createPermission();
@@ -33,6 +36,15 @@ class InitAdminUserData extends Migration
     public function down()
     {
         //
+    }
+
+    protected function addLanguages()
+    {
+        $data = [
+            ['langcode'=>'en','name' => 'English',                'script' => 'Latn', 'native' => 'English', 'regional' => 'en_GB'],
+            ['langcode'=>'zh','name' => 'Chinese (Simplified)',   'script' => 'Hans', 'native' => '简体中文', 'regional' => 'zh_CN'],
+        ];
+        Language::insert($data);
     }
 
     protected function createdAdmin(){
@@ -123,135 +135,105 @@ class InitAdminUserData extends Migration
     protected function createMenus(){
         $guard_name = config('backend.guard_name');
         // add default menus.
+
+        $menusData = [
+            [
+                'parent_id' => 0,
+                'order'     => 1,
+                'name'     => 'Dashboard',
+                'icon'      => 'fa-bar-chart',
+                'uri'       => '/dashboard',
+                'guard_name' => $guard_name,
+                'data' => [['langcode'=>'en', 'title'=>'Dashboard'], ['langcode'=>'zh', 'title'=>'面板'],],
+            ],
+            [
+                'parent_id' => 0,
+                'order'     => 2,
+                'name'     => 'Admin',
+                'icon'      => 'fa-tasks',
+                'uri'       => '',
+                'guard_name' => $guard_name,
+                'data' => [['langcode'=>'en', 'title'=>'Admin'], ['langcode'=>'zh', 'title'=>'后台'],],
+            ],
+            [
+                'parent_id' => 2,
+                'order'     => 3,
+                'name'     => 'Users',
+                'icon'      => 'fa-users',
+                'uri'       => '/admin-users',
+                'guard_name' => $guard_name,
+                'data' => [['langcode'=>'en', 'title'=>'Users'], ['langcode'=>'zh', 'title'=>'管理员'],],
+            ],
+            [
+                'parent_id' => 2,
+                'order'     => 4,
+                'name'     => 'Roles',
+                'icon'      => 'fa-user',
+                'uri'       => '/rbac-roles',
+                'guard_name' => $guard_name,
+                'data' => [['langcode'=>'en', 'title'=>'Roles'], ['langcode'=>'zh', 'title'=>'角色'],],
+            ],
+            [
+                'parent_id' => 2,
+                'order'     => 5,
+                'name'     => 'Permission',
+                'icon'      => 'fa-ban',
+                'uri'       => '/rbac-permissions',
+                'guard_name' => $guard_name,
+                'data' => [['langcode'=>'en', 'title'=>'Permission'], ['langcode'=>'zh', 'title'=>'权限'],],
+            ],
+            [
+                'parent_id' => 2,
+                'order'     => 6,
+                'name'     => 'Menu',
+                'icon'      => 'fa-bars',
+                'uri'       => '/menus',
+                'guard_name' => $guard_name,
+                'data' => [['langcode'=>'en', 'title'=>'Menu'], ['langcode'=>'zh', 'title'=>'菜单'],],
+            ],
+            [
+                'parent_id' => 2,
+                'order'     => 7,
+                'name'     => 'Operation log',
+                'icon'      => 'fa-history',
+                'uri'       => '/admin-operation-logs',
+                'guard_name' => $guard_name,
+                'data' => [['langcode'=>'en', 'title'=>'Operation log'], ['langcode'=>'zh', 'title'=>'操作日志'],],
+            ],
+        ];
+
+        Schema::disableForeignKeyConstraints();
         Menu::truncate();
-        Menu::insert([
-            [
-                'parent_id' => 0,
-                'order'     => 1,
-                'title'     => 'Dashboard',
-                'langcode'  => 'en',
-                'icon'      => 'fa-bar-chart',
-                'uri'       => '/dashboard',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 0,
-                'order'     => 1,
-                'title'     => '面版',
-                'langcode'  => 'zh',
-                'icon'      => 'fa-bar-chart',
-                'uri'       => '/dashboard',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 0,
-                'order'     => 2,
-                'title'     => 'Admin',
-                'langcode'  => 'en',
-                'icon'      => 'fa-tasks',
-                'uri'       => '',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 0,
-                'order'     => 2,
-                'title'     => '后台',
-                'langcode'  => 'zh',
-                'icon'      => 'fa-tasks',
-                'uri'       => '',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 3,
-                'title'     => 'Users',
-                'langcode'  => 'en',
-                'icon'      => 'fa-users',
-                'uri'       => '/admin-users',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 3,
-                'title'     => '管理员',
-                'langcode'  => 'zh',
-                'icon'      => 'fa-users',
-                'uri'       => '/admin-users',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 4,
-                'title'     => 'Roles',
-                'langcode'  => 'en',
-                'icon'      => 'fa-user',
-                'uri'       => '/rbac-roles',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 4,
-                'title'     => '角色',
-                'langcode'  => 'zh',
-                'icon'      => 'fa-user',
-                'uri'       => '/rbac-roles',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 5,
-                'title'     => 'Permission',
-                'langcode'  => 'en',
-                'icon'      => 'fa-ban',
-                'uri'       => '/rbac-permissions',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 5,
-                'title'     => '权限',
-                'langcode'  => 'zh',
-                'icon'      => 'fa-ban',
-                'uri'       => '/rbac-permissions',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 6,
-                'title'     => 'Menu',
-                'langcode'  => 'en',
-                'icon'      => 'fa-bars',
-                'uri'       => '/menus',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 6,
-                'title'     => '菜单',
-                'langcode'  => 'zh',
-                'icon'      => 'fa-bars',
-                'uri'       => '/menus',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 7,
-                'title'     => 'Operation log',
-                'langcode'  => 'en',
-                'icon'      => 'fa-history',
-                'uri'       => '/admin-operation-logs',
-                'guard_name' => $guard_name,
-            ],
-            [
-                'parent_id' => 2,
-                'order'     => 7,
-                'title'     => '操作日志',
-                'langcode'  => 'zh',
-                'icon'      => 'fa-history',
-                'uri'       => '/admin-operation-logs',
-                'guard_name' => $guard_name,
-            ],
-        ]);
+        MenusData::truncate();
+        Schema::enableForeignKeyConstraints();
+
+        foreach($menusData as $v){
+            $menu = new Menu();
+            $menu->parent_id = $v['parent_id'];
+            $menu->order = $v['order'];
+            $menu->name = $v['name'];
+            $menu->icon = $v['icon'];
+            $menu->uri = $v['uri'];
+            $menu->guard_name = $v['guard_name'];
+
+//            $tempData = [
+//                'parent_id' => $v['parent_id'],
+//                'order'     => $v['order'],
+//                'name'     => $v['name'],
+//                'icon'      => $v['icon'],
+//                'uri'       => $v['uri'],
+//                'guard_name' => $v['guard_name'],
+//            ];
+//$id = Menu::insertGetId($tempData);
+            if($menu->save()){
+                $ldata = [];
+                foreach($v['data'] as $m){
+                    $m['menu_id'] = $menu->id;
+                    $ldata[] = $m;
+                }
+                MenusData::insert($ldata);
+            }
+        }
 
         // add role to menu.
         Menu::find(2)->roles()->save(RbacRole::first());

@@ -80,13 +80,24 @@ class CreatePermissionTables extends Migration
             $table->increments('id');
             $table->integer('parent_id')->default(0);
             $table->integer('order')->default(0);
-            $table->string('title', 50);
-            $table->string('langcode', 32)->default('en');
+            $table->string('name', 50)->default('');
             $table->string('icon', 50);
             $table->string('uri', 50)->nullable();
             $table->string('guard_name', 32);
 
             $table->timestamps();
+        });
+
+        Schema::create('menus_data', function(Blueprint $table){
+            $table->integer('menu_id')->unsigned();
+            $table->string('langcode', 12)->default('en');
+            $table->string('title', 50);
+
+            $table->foreign('menu_id')
+                ->references('id')
+                ->on('menus')
+                ->onDelete('cascade');
+            $table->primary(['menu_id', 'langcode'], 'menus_data_menu_id_langcode_primary');
         });
 
         Schema::create($tableNames['role_has_menus'], function (Blueprint $table) use ($tableNames) {
@@ -101,6 +112,7 @@ class CreatePermissionTables extends Migration
                 ->onDelete('cascade');
             $table->primary(['rbac_role_id', 'menu_id'], 'admin_role_id_menu_id_primary');
         });
+
     }
 
     /**
@@ -113,6 +125,7 @@ class CreatePermissionTables extends Migration
         $tableNames = config('permission.table_names');
 
         Schema::dropIfExists($tableNames['role_has_menus']);
+        Schema::dropIfExists('menus_data');
         Schema::dropIfExists('menus');
         Schema::drop($tableNames['role_has_permissions']);
         Schema::drop($tableNames['model_has_roles']);

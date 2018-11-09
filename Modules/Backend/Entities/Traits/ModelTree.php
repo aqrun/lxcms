@@ -132,9 +132,9 @@ trait ModelTree
      *
      * @return array
      */
-    public function toTree($guardName='web', $lang)
+    public function toTree($guardName='web')
     {
-        return $this->buildNestedArray([], 0, $guardName, $lang);
+        return $this->buildNestedArray([], 0, $guardName);
     }
 
     /**
@@ -147,12 +147,12 @@ trait ModelTree
      *
      * @return array
      */
-    protected function buildNestedArray(array $nodes = [], $parentId = 0, $guardName='web', $lang='en')
+    protected function buildNestedArray(array $nodes = [], $parentId = 0, $guardName='web')
     {
         $branch = [];
 
         if (empty($nodes)) {
-            $nodes = $this->allNodes($guardName, $lang);
+            $nodes = $this->allNodes($guardName);
         }
 
         foreach ($nodes as $node) {
@@ -174,11 +174,10 @@ trait ModelTree
      * Get all elements.
      *
      * @param string $guardName
-     * @param string $lang
      *
      * @return mixed
      */
-    public function allNodes($guardName='web', $lang='en')
+    public function allNodes($guardName='web')
     {
         $orderColumn = DB::getQueryGrammar()->wrap($this->orderColumn);
         $byOrder = $orderColumn.' = 0,'.$orderColumn;
@@ -188,13 +187,9 @@ trait ModelTree
         if ($this->queryCallback instanceof \Closure) {
             $self = call_user_func($this->queryCallback, $self);
         }
-        var_dump($lang);exit;
-        if(!empty($lang)){
-            $query = $self->where('guard_name',$guardName)
-                ->where('lang', $lang);
-        }else{
-            $query = $self->where('guard_name',$guardName);
-        }
+
+        $query = $self->where('guard_name',$guardName);
+
         return $query->orderByRaw($byOrder)
             ->get()
             ->toArray();
