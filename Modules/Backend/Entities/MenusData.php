@@ -1,6 +1,16 @@
 <?php
 namespace Modules\Backend\Entities;
 
+/**
+ * Class MenusData
+ * @package Modules\Backend\Entities
+ *
+ * @property $menu_id
+ * @property $langcode
+ * @property
+ *
+ *
+ */
 class MenusData extends BaseEntity
 {
     protected $fillable = ['menu_id', 'langcode', 'title'];

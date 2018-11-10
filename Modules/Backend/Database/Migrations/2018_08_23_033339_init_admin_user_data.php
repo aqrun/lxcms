@@ -9,6 +9,8 @@ use Modules\Backend\Entities\RbacPermission;
 use Modules\Backend\Entities\Menu;
 use Modules\Backend\Entities\Language;
 use \Modules\Backend\Entities\MenusData;
+use Modules\Backend\Entities\RbacRolesData;
+use Modules\Backend\Entities\RbacPermissionsData;
 
 class InitAdminUserData extends Migration
 {
@@ -63,17 +65,45 @@ class InitAdminUserData extends Migration
         // create a role.
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         RbacRole::truncate();
+        RbacRolesData::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $time = date('Y-m-d H:i:s');
-        RbacRole::insert([
+        $roleData = [
             ['name' => 'Administrator', 'slug' => 'administrator', 'guard_name' => self::ADMIN_GUARD,
-               'created_at' => $time, 'updated_at' => $time ],
+                'created_at' => $time, 'updated_at' => $time,
+                'data' => [
+                    ['langcode'=>'en', 'title'=>'Administrator'],
+                    ['langcode'=>'zh', 'title'=>'超级管理员'],
+                ],
+            ],
             ['name' => 'Admin', 'slug' => 'admin', 'guard_name' => self::ADMIN_GUARD,
-                'created_at' => $time, 'updated_at' => $time ],
+                'created_at' => $time, 'updated_at' => $time,
+                'data' => [
+                    ['langcode'=>'en', 'title'=>'Admin'],
+                    ['langcode'=>'zh', 'title'=>'管理员'],
+                ],
+            ],
             ['name' => 'Article Manager', 'slug' => 'article_manager', 'guard_name' => self::ADMIN_GUARD,
-                'created_at' => $time, 'updated_at' => $time ],
-        ]);
+                'created_at' => $time, 'updated_at' => $time,
+                'data' => [
+                    ['langcode'=>'en', 'title'=>'Article Manager'],
+                    ['langcode'=>'zh', 'title'=>'内容管理'],
+                ],
+            ],
+        ];
+        foreach($roleData as $v){
+            $role = new RbacRole();
+            $role->name = $v['name'];
+            $role->slug = $v['slug'];
+            $role->guard_name = $v['guard_name'];
+            if($role->save()){
+                foreach($v['data'] as $m){
+                    $m['rbac_role_id'] = $role->id;
+                    RbacRolesData::insert($m);
+                }
+            }
+        }
 
         // add role to user.
         AdminUser::first()->assignRole(RbacRole::first()->slug);
@@ -83,17 +113,22 @@ class InitAdminUserData extends Migration
         //create a permission
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         RbacPermission::truncate();
+        RbacPermissionsData::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $time = date('Y-m-d H:i:s');
-        RbacPermission::insert([
+
+        $dataArr = [
             [
                 'name'        => 'All permission',
                 'slug'        => '*',
                 'http_method' => '',
                 'http_path'   => '*',
                 'guard_name'  => self::ADMIN_GUARD,
-                'created_at' => $time, 'updated_at' => $time
+                'data' => [
+                    ['langcode'=>'en', 'title'=> 'All permission'],
+                    ['langcode'=>'zh', 'title'=> '所有权限'],
+                ],
             ],
             [
                 'name'        => 'Dashboard',
@@ -101,7 +136,10 @@ class InitAdminUserData extends Migration
                 'http_method' => 'GET',
                 'http_path'   => '/',
                 'guard_name'  => self::ADMIN_GUARD,
-                'created_at' => $time, 'updated_at' => $time
+                'data' => [
+                    ['langcode'=>'en', 'title'=> 'Dashboard'],
+                    ['langcode'=>'zh', 'title'=> '面板'],
+                ],
             ],
             [
                 'name'        => 'Login',
@@ -109,7 +147,10 @@ class InitAdminUserData extends Migration
                 'http_method' => '',
                 'http_path'   => "/auth/login\r\n/auth/logout",
                 'guard_name'  => self::ADMIN_GUARD,
-                'created_at' => $time, 'updated_at' => $time
+                'data' => [
+                    ['langcode'=>'en', 'title'=> 'Login'],
+                    ['langcode'=>'zh', 'title'=> '登录'],
+                ],
             ],
             [
                 'name'        => 'User setting',
@@ -117,7 +158,10 @@ class InitAdminUserData extends Migration
                 'http_method' => 'GET,PUT',
                 'http_path'   => '/auth/setting',
                 'guard_name'  => self::ADMIN_GUARD,
-                'created_at' => $time, 'updated_at' => $time
+                'data' => [
+                    ['langcode'=>'en', 'title'=> 'User setting'],
+                    ['langcode'=>'zh', 'title'=> '用户设置'],
+                ],
             ],
             [
                 'name'        => 'Auth management',
@@ -125,9 +169,26 @@ class InitAdminUserData extends Migration
                 'http_method' => '',
                 'http_path'   => "/auth/roles\r\n/auth/permissions\r\n/auth/menu\r\n/auth/logs",
                 'guard_name'  => self::ADMIN_GUARD,
-                'created_at' => $time, 'updated_at' => $time
+                'data' => [
+                    ['langcode'=>'en', 'title'=> 'Auth management'],
+                    ['langcode'=>'zh', 'title'=> '权限管理'],
+                ],
             ],
-        ]);
+        ];
+        foreach($dataArr as $v){
+            $pm = new RbacPermission();
+            $pm->name = $v['name'];
+            $pm->slug = $v['slug'];
+            $pm->http_method = $v['http_method'];
+            $pm->http_path = $v['http_path'];
+            $pm->guard_name = $v['guard_name'];
+            if($pm->save()){
+                foreach($v['data'] as $m){
+                    $m['rbac_permission_id'] = $pm->id;
+                    RbacPermissionsData::insert($m);
+                }
+            }
+        }
 
         RbacRole::first()->givePermissionTo(RbacPermission::first()->slug);
     }

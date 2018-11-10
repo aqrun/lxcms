@@ -25,12 +25,38 @@ class CreatePermissionTables extends Migration
             $table->timestamps();
         });
 
+        Schema::create($tableNames['permissions'] . '_data', function(Blueprint $table) use ($tableNames){
+            $table->unsignedInteger('rbac_permission_id');
+            $table->string('langcode', 12);
+            $table->string('title', 128);
+
+            $table->foreign('rbac_permission_id')
+                ->references('id')
+                ->on($tableNames['permissions'])
+                ->onDelete('cascade');
+
+            $table->primary(['rbac_permission_id', 'langcode']);
+        });
+
         Schema::create($tableNames['roles'], function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('slug', 50);
             $table->string('guard_name', 32);
             $table->timestamps();
+        });
+
+        Schema::create($tableNames['roles'] . '_data', function(Blueprint $table) use ($tableNames){
+            $table->unsignedInteger('rbac_role_id');
+            $table->string('langcode', 12);
+            $table->string('title', 128);
+
+            $table->foreign('rbac_role_id')
+                ->references('id')
+                ->on($tableNames['roles'])
+                ->onDelete('cascade');
+
+            $table->primary(['rbac_role_id', 'langcode']);
         });
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames) {

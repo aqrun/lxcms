@@ -16,6 +16,20 @@ use Modules\Backend\Contracts\Permission as PermissionContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+/**
+ * Class RbacPermission
+ * @package Modules\Backend\Entities
+ *
+ * @property $id
+ * @property $name
+ * @property $slug
+ * @property $http_method
+ * @property $http_path
+ * @property $guard_name
+ * @property $created_at
+ * @property $updated_at
+ *
+ */
 class RbacPermission extends Model implements PermissionContract
 {
     use RbacHasRoles;

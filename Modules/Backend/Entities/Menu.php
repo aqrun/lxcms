@@ -4,6 +4,21 @@ namespace Modules\Backend\Entities;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class Menu
+ * @package Modules\Backend\Entities
+ *
+ * @property $id
+ * @property $parent_id
+ * @property $order
+ * @property $name
+ * @property $icon
+ * @property $uri
+ * @property $guard_name
+ * @property $created_at
+ * @property $updated_at
+ *
+ */
 class Menu extends BaseEntity
 {
 

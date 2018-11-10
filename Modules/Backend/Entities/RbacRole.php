@@ -13,6 +13,18 @@ use Spatie\Permission\Traits\RefreshesPermissionCache;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Class RbacRole
+ * @package Modules\Backend\Entities
+ *
+ * @property $id
+ * @property $name
+ * @property $slug
+ * @property $guard_name
+ * @property $created_at
+ * @property $updated_at
+ *
+ */
 class RbacRole extends Model implements RoleContract
 {
     use RbacHasPermissions, RefreshesPermissionCache;
