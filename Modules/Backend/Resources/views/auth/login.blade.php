@@ -1,7 +1,9 @@
 
 @extends('backend::layouts.main_clean')
 
-@section('title', '登录')
+@section('title')
+  @lang('backend::admin.sign_in')
+@stop
 
 @section('style')
   <!-- iCheck -->
@@ -18,7 +20,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">@lang('backend::auth.sign_in_start_session')</p>
 
     @include('backend::partials._errors')
 
@@ -36,13 +38,13 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Remember Me
+              <input type="checkbox"> @lang('backend::admin.remember_me')
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('backend::admin.sign_in')</button>
         </div>
         <!-- /.col -->
       </div>

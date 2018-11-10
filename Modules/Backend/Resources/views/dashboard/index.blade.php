@@ -1,13 +1,17 @@
 
 @extends('backend::layouts.main')
 
-@section('title', 'Dashboard')
-@section('description', 'backend basic data')
+@section('title')
+    @lang('backend::dashboard.dashboard')
+@stop
+@section('description')
+    @lang('backend::dashboard.description')
+@stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('backend::admin.home')</a></li>
+        <li class="active">@lang('backend::dashboard.dashboard')</li>
     </ol>
 @endsection
 
@@ -41,7 +45,7 @@
                 }
             </style>
 
-            <div class="title">LXCMS-Backend</div>
+            <div class="title">LXCMS-@lang('backend::admin.backend')</div>
             <div class="links">
                 <a href="#" target="_blank">Github</a>
                 <a href="#"  target="_blank">Documentation</a>
@@ -55,7 +59,7 @@
 
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Environment</h3>
+                    <h3 class="box-title">@lang('backend::dashboard.environment')</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" type="button" data-weight="collapse"><i class="fa fa-minus"></i></button>
                         <button class="btn btn-box-tool" type="button" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -81,7 +85,7 @@
         <div class="col-md-6">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Dependencies</h3>
+                    <h3 class="box-title">@lang('backend::dashboard.dependencies')</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" type="button" data-weight="collapse"><i class="fa fa-minus"></i></button>
                         <button class="btn btn-box-tool" type="button" data-widget="remove"><i class="fa fa-times"></i></button>

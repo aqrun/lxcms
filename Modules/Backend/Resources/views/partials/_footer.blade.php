@@ -1,7 +1,6 @@
 <footer class="main-footer">
   <div class="pull-right hidden-xs">
-    <b>Version</b> 2.4.0
+    <b>@lang('backend::admin.version')</b> 0.0.1
   </div>
-  <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-  reserved.
+  <strong>&copy; {{ date('Y') }} <a href="https://lxage.com">LXCMS</a> </strong> @lang('backend::admin.all_rights_reserved')
 </footer>
