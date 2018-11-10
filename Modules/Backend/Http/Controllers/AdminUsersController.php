@@ -33,6 +33,12 @@ class AdminUsersController extends BaseController
 
     public function create()
     {
-        return $this->view('backend::admin-users.create');
+        $user = new AdminUser();
+        return $this->view('backend::admin-users.create', compact('user'));
+    }
+
+    public function store(Request $request)
+    {
+
     }
 }

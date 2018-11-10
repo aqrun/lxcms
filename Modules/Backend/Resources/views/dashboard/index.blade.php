@@ -10,7 +10,7 @@
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('backend::admin.home')</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('backend::common.home')</a></li>
         <li class="active">@lang('backend::dashboard.dashboard')</li>
     </ol>
 @endsection
@@ -45,7 +45,7 @@
                 }
             </style>
 
-            <div class="title">LXCMS-@lang('backend::admin.backend')</div>
+            <div class="title">LXCMS-@lang('backend::common.backend')</div>
             <div class="links">
                 <a href="#" target="_blank">Github</a>
                 <a href="#"  target="_blank">Documentation</a>

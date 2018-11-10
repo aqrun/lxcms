@@ -2,7 +2,7 @@
 @extends('backend::layouts.main_clean')
 
 @section('title')
-  @lang('backend::admin.sign_in')
+  @lang('backend::common.sign_in')
 @stop
 
 @section('style')
@@ -38,13 +38,13 @@
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> @lang('backend::admin.remember_me')
+              <input type="checkbox"> @lang('backend::common.remember_me')
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('backend::admin.sign_in')</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">@lang('backend::common.sign_in')</button>
         </div>
         <!-- /.col -->
       </div>

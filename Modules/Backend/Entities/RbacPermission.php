@@ -46,6 +46,13 @@ class RbacPermission extends Model implements PermissionContract
         $this->setTable(config('permission.table_names.permissions'));
     }
 
+    public function permissionData()
+    {
+        $lang = \LaravelLocalization::getCurrentLocale();
+        return $this->hasOne(RbacPermissionsData::class, 'rbac_permission_id', 'id')
+            ->where('langcode', $lang);
+    }
+
     public static function create(array $attributes = [])
     {
         $attributes['guard_name'] = $attributes['guard_name'] ?? Guard::getDefaultName(static::class);

@@ -5,7 +5,7 @@
     <!-- search form -->
     <form action="#" method="get" class="sidebar-form">
       <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="@lang('backend::admin.search')...">
+        <input type="text" name="q" class="form-control" placeholder="@lang('backend::common.search')...">
         <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -15,7 +15,7 @@
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">@lang('backend::admin.main_navigation')</li>
+      <li class="header">@lang('backend::common.main_navigation')</li>
       @each('backend::partials._sidebar_menu', Backend::menu(), 'item')
     </ul>
   </section>

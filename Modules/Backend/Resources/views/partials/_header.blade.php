@@ -45,18 +45,18 @@
               <img src="{{ \Backend::user()->avatar??config('backend.anonymous_avatar') }}" class="img-circle" alt="User Image">
 
               <p>
-                {{ Backend::user()->name }} - {{ \Backend::user()->roles[0]->name }}
-                <small>@lang('backend::admin.member_since') {{ Backend::user()->created_at->toFormattedDateString() }}</small>
+                {{ Backend::user()->name }} - {{ \Backend::user()->roles[0]->roleData->title }}
+                <small>@lang('backend::common.member_since') {{ Backend::user()->created_at->toFormattedDateString() }}</small>
               </p>
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">@lang('backend::admin.profile')</a>
+                <a href="#" class="btn btn-default btn-flat">@lang('backend::common.profile')</a>
               </div>
               <div class="pull-right">
                 <a href="#" onclick="javascript:$('#frm_header_logout').submit()"
-                   class="btn btn-default btn-flat">@lang('backend::admin.sign_out')</a>
+                   class="btn btn-default btn-flat">@lang('backend::common.sign_out')</a>
                 <form style="display:none" id="frm_header_logout"
                       action="{{ \Backend::baseUrl('/logout')  }}"
                       method="post">

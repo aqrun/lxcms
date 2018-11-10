@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.33 on 2018-11-08 08:19:00.
+ * Generated for Laravel 5.6.33 on 2018-11-10 08:27:06.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13155,15 +13155,26 @@ namespace Modules\Backend\Facades {
         }
         
         /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function timezone()
+        {
+            return \Modules\Backend\Backend::timezone();
+        }
+        
+        /**
          * Get backend url.
          *
          * @param string $path
+         * @param $withLanguage
          * @return string 
          * @static 
          */ 
-        public static function baseUrl($path = '')
+        public static function baseUrl($path = '', $withLanguage = true)
         {
-            return \Modules\Backend\Backend::baseUrl($path);
+            return \Modules\Backend\Backend::baseUrl($path, $withLanguage);
         }
         
         /**
@@ -13185,6 +13196,218 @@ namespace Modules\Backend\Facades {
         public static function assetHash()
         {
             return \Modules\Backend\Backend::assetHash();
+        }
+        
+        /**
+         * get current url prefix
+         *
+         * @static 
+         */ 
+        public static function prefix()
+        {
+            return \Modules\Backend\Backend::prefix();
+        }
+         
+    }
+ 
+}
+
+namespace Former\Facades { 
+
+    class Former {
+        
+        /**
+         * Register a macro with Former
+         *
+         * @param string $name The name of the macro
+         * @param Callable $macro The macro itself
+         * @return mixed 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            return \Former\Former::macro($name, $macro);
+        }
+        
+        /**
+         * Check if a macro exists
+         *
+         * @param string $name
+         * @return boolean 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Former\Former::hasMacro($name);
+        }
+        
+        /**
+         * Get a registered macro
+         *
+         * @param string $name
+         * @return \Closure 
+         * @static 
+         */ 
+        public static function getMacro($name)
+        {
+            return \Former\Former::getMacro($name);
+        }
+        
+        /**
+         * Add values to populate the array
+         *
+         * @param mixed $values Can be an Eloquent object or an array
+         * @static 
+         */ 
+        public static function populate($values)
+        {
+            return \Former\Former::populate($values);
+        }
+        
+        /**
+         * Set the value of a particular field
+         *
+         * @param string $field The field's name
+         * @param mixed $value Its new value
+         * @static 
+         */ 
+        public static function populateField($field, $value)
+        {
+            return \Former\Former::populateField($field, $value);
+        }
+        
+        /**
+         * Get the value of a field
+         *
+         * @param string $field The field's name
+         * @param null $fallback
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getValue($field, $fallback = null)
+        {
+            return \Former\Former::getValue($field, $fallback);
+        }
+        
+        /**
+         * Fetch a field value from both the new and old POST array
+         *
+         * @param string $name A field name
+         * @param string $fallback A fallback if nothing was found
+         * @return string The results
+         * @static 
+         */ 
+        public static function getPost($name, $fallback = null)
+        {
+            return \Former\Former::getPost($name, $fallback);
+        }
+        
+        /**
+         * Set the errors to use for validations
+         *
+         * @param \Former\Message $validator The result from a validation
+         * @return void 
+         * @static 
+         */ 
+        public static function withErrors($validator = null)
+        {
+            \Former\Former::withErrors($validator);
+        }
+        
+        /**
+         * Add live validation rules
+         *
+         * @param array  *$rules An array of Laravel rules
+         * @return void 
+         * @static 
+         */ 
+        public static function withRules()
+        {
+            \Former\Former::withRules();
+        }
+        
+        /**
+         * Switch the framework used by Former
+         *
+         * @param string $framework The name of the framework to use
+         * @static 
+         */ 
+        public static function framework($framework = null)
+        {
+            return \Former\Former::framework($framework);
+        }
+        
+        /**
+         * Get a new framework instance
+         *
+         * @param string $framework
+         * @throws Exceptions\InvalidFrameworkException
+         * @return \Former\Interfaces\FrameworkInterface 
+         * @static 
+         */ 
+        public static function getFrameworkInstance($framework)
+        {
+            return \Former\Former::getFrameworkInstance($framework);
+        }
+        
+        /**
+         * Get an option from the config
+         *
+         * @param string $option The option
+         * @param mixed $default Optional fallback
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getOption($option, $default = null)
+        {
+            return \Former\Former::getOption($option, $default);
+        }
+        
+        /**
+         * Set an option on the config
+         *
+         * @param string $option
+         * @param string $value
+         * @static 
+         */ 
+        public static function setOption($option, $value)
+        {
+            return \Former\Former::setOption($option, $value);
+        }
+        
+        /**
+         * Closes a form
+         *
+         * @return string A form closing tag
+         * @static 
+         */ 
+        public static function close()
+        {
+            return \Former\Former::close();
+        }
+        
+        /**
+         * Get the errors for the current field
+         *
+         * @param string $name A field name
+         * @return string An error message
+         * @static 
+         */ 
+        public static function getErrors($name = null)
+        {
+            return \Former\Former::getErrors($name);
+        }
+        
+        /**
+         * Get a rule from the Rules array
+         *
+         * @param string $name The field to fetch
+         * @return array An array of rules
+         * @static 
+         */ 
+        public static function getRules($name)
+        {
+            return \Former\Former::getRules($name);
         }
          
     }
@@ -16640,6 +16863,8 @@ namespace  {
     class Date extends \Jenssegers\Date\Date {}
 
     class Backend extends \Modules\Backend\Facades\Backend {}
+
+    class Former extends \Former\Facades\Former {}
 
     class Admin extends \Encore\Admin\Facades\Admin {}
 

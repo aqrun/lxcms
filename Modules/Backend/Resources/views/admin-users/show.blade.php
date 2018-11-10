@@ -1,12 +1,17 @@
 @extends('backend::layouts.main')
 
-@section('title', __('Admin Users View'))
-@section('description', __('Backend users detail'))
+@section('title')
+    @lang('backend::admin.admin_users_view')
+@stop
+@section('description')
+    @lang('backend::admin.description')
+@stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('Home')</a></li>
-        <li class="active">@lang('Admin users')</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('backend::common.home')</a></li>
+        <li>@lang('backend::admin.admin')</li>
+        <li class="active">@lang('backend::admin.admin_users_view')</li>
     </ol>
 @endsection
 
@@ -17,11 +22,14 @@
                 <div class="row">
                     <div class="col-md-8">
                         <a href="{{ \Backend::baseUrl('admin-users') }}" class="btn btn-default btn-md">
-                            <i class="fa fa-chevron-left"></i>&nbsp;@lang('Back')</a>
+                            <i class="fa fa-chevron-left"></i>&nbsp;@lang('backend::common.back_to_list')</a>
                     </div>
                     <div class="col-md-4 text-right">
+                        <a href="{{ \Backend::baseUrl('admin-users/create') }}" class="btn btn-success btn-md">
+                            <i class="fa fa-edit"></i>&nbsp;@lang('backend::common.create')
+                        </a>
                         <a href="{{ \Backend::baseUrl('admin-users/edit') }}" class="btn btn-primary btn-md">
-                            <i class="fa fa-edit"></i>&nbsp;@lang('Edit')
+                            <i class="fa fa-edit"></i>&nbsp;@lang('backend::common.edit')
                         </a>
                     </div>
                 </div>
@@ -39,28 +47,36 @@
                     <div class="col-md-9">
 
                         <div class="col-md-6">
-                            <div class="col-md-4 text-right text-bold">@lang('Username')</div>
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.username')</div>
                             <div class="col-md-6">{{ $adminUser->username }}</div>
                         </div>
                         <div class="col-md-6">
-                            <div class="col-md-4 text-right text-bold">@lang('Name')</div>
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.name')</div>
                             <div class="col-md-6">{{ $adminUser->name }}</div>
                         </div>
                         <div class="col-md-6">
-                            <div class="col-md-4 text-right text-bold">@lang('Email')</div>
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.email')</div>
                             <div class="col-md-6">{{ $adminUser->email }}</div>
                         </div>
                         <div class="col-md-6">
-                            <div class="col-md-4 text-right text-bold">@lang('Mobile')</div>
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.mobile')</div>
                             <div class="col-md-6">{{ $adminUser->mobile }}</div>
                         </div>
                         <div class="col-md-6">
-                            <div class="col-md-4 text-right text-bold">@lang('Weight')</div>
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.weight')</div>
                             <div class="col-md-6">{{ $adminUser->weight }}</div>
                         </div>
                         <div class="col-md-6">
-                            <div class="col-md-4 text-right text-bold">@lang('Status')</div>
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.status')</div>
                             <div class="col-md-6">{{ $adminUser->status }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.created_at')</div>
+                            <div class="col-md-6">{{ $adminUser->created_at->setTimezone(\Backend::timezone())->toDateTimeString() }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-4 text-right text-bold">@lang('backend::common.updated_at')</div>
+                            <div class="col-md-6">{{ $adminUser->updated_at->setTimezone(\Backend::timezone())->toDateTimeString() }}</div>
                         </div>
                     </div>
                 </div>

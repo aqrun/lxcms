@@ -1,6 +1,8 @@
 <?php
 namespace Modules\Backend\Http\Controllers;
 
+use Modules\Backend\Entities\RbacRole;
+
 class DashboardController extends BaseController
 {
     public function __construct()
@@ -13,6 +15,8 @@ class DashboardController extends BaseController
      * @return string
      */
     public function index(){
+//        $r = RbacRole::with('roleData')->first();
+//        \Debugbar::info($r);
         $envs = [
             ['name' => 'PHP version',       'value' => 'PHP/'.PHP_VERSION],
             ['name' => 'Laravel version',   'value' => app()->version()],

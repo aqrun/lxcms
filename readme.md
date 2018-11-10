@@ -43,6 +43,7 @@
         id
         vid
         article_id
+        format    html/markdown
         weight
         created_at
         updated_at
@@ -54,3 +55,6 @@
         content
 
 
+## Former
+
+> https://github.com/formers/former/wiki/Usage-and-Examples

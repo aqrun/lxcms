@@ -1,12 +1,17 @@
 @extends('backend::layouts.main')
 
-@section('title', 'Admin Users')
-@section('description', 'Backend users management')
+@section('title')
+    @lang('backend::admin.admin_users')
+@stop
+@section('description')
+    @lang('backend::admin.admin_users_list_desc')
+@stop
 
 @section('breadcrumb')
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('backend::admin.home')</a></li>
-        <li class="active">Admin users</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @lang('backend::common.home')</a></li>
+        <li>@lang('backend::admin.admin')</li>
+        <li class="active">@lang('backend::admin.admin_users')</li>
     </ol>
 @endsection
 

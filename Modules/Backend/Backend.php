@@ -60,6 +60,11 @@ class Backend
         return $this->auth()->user();
     }
 
+    public function timezone()
+    {
+        return $this->user()->timezone ?? 'Asia/Shanghai';
+    }
+
     /**
      * Get backend url.
      *

@@ -40,6 +40,13 @@ class RbacRole extends Model implements RoleContract
         $this->setTable(config('permission.table_names.roles'));
     }
 
+    public function roleData()
+    {
+        $lang = \LaravelLocalization::getCurrentLocale();
+        return $this->hasOne(RbacRolesData::class, 'rbac_role_id', 'id')
+            ->where('langcode', $lang);
+    }
+
     public static function create(array $attributes = [])
     {
         $attributes['guard_name'] = $attributes['guard_name'] ?? Guard::getDefaultName(static::class);
