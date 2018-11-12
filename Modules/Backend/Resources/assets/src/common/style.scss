@@ -9,6 +9,12 @@
   //border-left-color: #dd4b39;
 }
 
+.form-group.required .control-label:before{
+    color: red;
+    content: "*";
+    position: absolute;
+    margin-left: -10px;
+}
 .table_info_w{
     display: flex;
     align-items:center;
@@ -40,4 +46,19 @@
 }
 .no-padding{
     padding:0;
+}
+
+.avatar-preview{
+    margin-top: 10px;
+    border: 1px solid #d1d1d1;
+    background: #ddd;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    img{
+        max-width:100%;
+    }
 }

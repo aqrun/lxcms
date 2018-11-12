@@ -17,8 +17,8 @@
 <script src="/vendor/AdminLTE-2.4.5/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/moment/min/moment.min.js"></script>
-<script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/moment/locale/zh-cn.js"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/fastclick/lib/fastclick.js"></script>

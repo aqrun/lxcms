@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Backend\Http\Controllers;
 
+use Modules\Backend\Helpers\TimeHelper;
 use Modules\Backend\Models\AdminUserModel;
 use Illuminate\Http\Request;
 use Modules\Backend\Entities\AdminUser;
@@ -33,8 +34,10 @@ class AdminUsersController extends BaseController
 
     public function create()
     {
+        $lang = \LaravelLocalization::getCurrentLocale();
         $user = new AdminUser();
-        return $this->view('backend::admin-users.create', compact('user'));
+        $timezoneList = TimeHelper::getTimezoneList($lang);
+        return $this->view('backend::admin-users.create', compact('user', 'timezoneList'));
     }
 
     public function store(Request $request)
