@@ -5,7 +5,8 @@
 <script src="/vendor/AdminLTE-2.4.5/bower_components/react/umd/react.development.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/react-dom/umd/react-dom.development.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/react-table/react-table.js"></script>
-
+<script src="/vendor/AdminLTE-2.4.5/bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="/vendor/AdminLTE-2.4.5/bower_components/datatables.net-bs/js/dataTables.bootstrap.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="/vendor/AdminLTE-2.4.5/bower_components/toastr/build/toastr.min.js"></script>

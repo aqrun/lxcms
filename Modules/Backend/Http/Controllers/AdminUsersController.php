@@ -5,6 +5,7 @@ use Modules\Backend\Helpers\TimeHelper;
 use Modules\Backend\Models\AdminUserModel;
 use Illuminate\Http\Request;
 use Modules\Backend\Entities\AdminUser;
+use DataTables;
 
 class AdminUsersController extends BaseController
 {
@@ -15,6 +16,16 @@ class AdminUsersController extends BaseController
 
     public function index(){
         return $this->view('backend::admin-users.index');
+    }
+
+    public function testIndex()
+    {
+        return $this->view('backend::admin-users.index1');
+    }
+
+    public function index1Data()
+    {
+        return DataTables::of(AdminUser::query())->make(true);
     }
 
     /**

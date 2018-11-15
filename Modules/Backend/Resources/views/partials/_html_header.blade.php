@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/bootstrap3-editable/css/bootstrap-editable.css">
 <link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/toastr/build/toastr.min.css">
 <link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/react-table/react-table.css">
+<link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/datatables.net/style.css?v=0.6">
+<link rel="stylesheet" href="/vendor/AdminLTE-2.4.5/bower_components/datatables.net-bs/css/dataTables.bootstrap.css">
 @yield('style')
 <link rel="stylesheet" href="/static/backend/dist/app.{{ \Backend::assetHash() }}.css">
 
