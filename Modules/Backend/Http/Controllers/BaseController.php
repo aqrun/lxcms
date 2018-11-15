@@ -16,9 +16,7 @@ class BaseController extends Controller
         $this->init();
     }
 
-    public function init(){
-
-    }
+    public function init(){}
 
     public function view($template, $params=[]){
         $defaultParams = [
@@ -27,7 +25,7 @@ class BaseController extends Controller
     }
 
     public static function setMenuUri($uri='/'){
-        \Backend::setMenuUri(\Backend::baseUrl($uri, false));
+        \Backend::setMenuUri(\Backend::baseUrl($uri));
     }
 
 }

@@ -48,7 +48,8 @@ function sidebarClick(){
     });
 }
 function sidebarInitActive(){
-    let uri = '/' + g.locale + g.menuUri;
+    //let uri = '/' + g.locale + g.menuUri;
+    let uri = g.menuUri;
     let $s = $('a[href="'+ uri +'"]');
     $s.parent().siblings().removeClass('active');
     $s.parent().addClass('active');

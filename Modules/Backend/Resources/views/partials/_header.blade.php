@@ -52,7 +52,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">@lang('backend::common.profile')</a>
+                <a href="{{ route('profile') }}" class="btn btn-default btn-flat">@lang('backend::common.profile')</a>
               </div>
               <div class="pull-right">
                 <a href="#" onclick="javascript:$('#frm_header_logout').submit()"

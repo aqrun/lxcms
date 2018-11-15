@@ -18,9 +18,12 @@ function generateRoutes(){
                 Route::get('/', 'DashboardController@index');
                 Route::get('/dashboard', 'DashboardController@index');
 
+                Route::resource('profile', 'ProfileController', ['only' => ['index', 'edit', 'update']]);
+
                 // admin users
                 Route::resource('admin-users', 'AdminUsersController');
                 Route::post('/admin-users/index-data', 'AdminUsersController@indexData')->name('admin-users.index-data');
+                Route::get('/profile', 'AdminUsersController@profile')->name('profile');
 
                 // menus
                 Route::get('/menus', 'MenusController@index')->name('menus.index');
