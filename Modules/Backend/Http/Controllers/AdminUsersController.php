@@ -4,8 +4,8 @@ namespace Modules\Backend\Http\Controllers;
 use Modules\Backend\Helpers\TimeHelper;
 use Modules\Backend\Models\AdminUserModel;
 use Illuminate\Http\Request;
-use Modules\Backend\Entities\AdminUser;
-use DataTables;
+use Modules\Backend\Models\AdminUserDataTable;
+
 
 class AdminUsersController extends BaseController
 {
@@ -18,14 +18,14 @@ class AdminUsersController extends BaseController
         return $this->view('backend::admin-users.index');
     }
 
-    public function testIndex()
+    public function testIndex(Request $request, AdminUserDataTable $adminUserDataTable)
     {
-        return $this->view('backend::admin-users.index1');
-    }
+        if($request->ajax()){
+            return $adminUserDataTable->ajax();
+        }
 
-    public function index1Data()
-    {
-        return DataTables::of(AdminUser::query())->make(true);
+        $html = $adminUserDataTable->html();
+        return $this->view('backend::admin-users.index1', compact('html'));
     }
 
     /**

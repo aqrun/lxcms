@@ -59,21 +59,7 @@
                 </div>
                 <div class="box-body table-responsive no-padding1">
 
-                    <table class="table table-bordered" id="users-table">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Avatar</th>
-                            <th>Name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Weight</th>
-                            <th>Status</th>
-                            <th>Created At</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                    </table>
+                    {!! $html->table() !!}
 
                 </div>
             </div>
@@ -96,42 +82,11 @@
     </script>
 
     <script>
-        g.page_admin_users_list = true;
+        g.page_admin_users_test_index = true;
     </script>
 @endsection
 
 @section('page_script')
-    <script>
-        $(function(){
-
-            var ajax = {
-                url: '{!! \Backend::baseUrl('/admin-users/index1-data') !!}',
-                type: 'POST',
-                beforeSend: function (request) {
-                    request.setRequestHeader('X-CSRF-TOKEN', document.head.querySelector('meta[name="csrf-token"]').content);
-                },
-                data: function(d){
-                    return d;
-                }
-            };
-
-            $('#users-table').dataTable({
-                processing: true,
-                serverSide: true,
-                ajax: ajax,
-                columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'avatar', name: 'avatar' },
-                    { data: 'name', name: 'name'},
-                    { data: 'username', name: 'username'},
-                    { data: 'email', name: 'email' },
-                    { data: 'weight', name: 'weight'},
-                    { data: 'status', name: 'status'},
-                    { data: 'created_at', name: 'created_at' },
-                    { data: 'id', name: 'id' }
-                ]
-            });
-        });
-    </script>
+    {!! $html->scripts() !!}
 @endsection
 

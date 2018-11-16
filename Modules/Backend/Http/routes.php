@@ -21,8 +21,7 @@ function generateRoutes(){
             Route::resource('profile', 'ProfileController', ['only' => ['index', 'edit', 'update']]);
 
             // admin users
-            Route::get('/admin-users/test-index', 'AdminUsersController@testIndex');
-            Route::post('/admin-users/index1-data', 'AdminUsersController@index1Data');
+            Route::match(['get', 'post'],'/admin-users/test-index', 'AdminUsersController@testIndex');
             Route::post('/admin-users/index-data', 'AdminUsersController@indexData')->name('admin-users.index-data');
             Route::resource('admin-users', 'AdminUsersController');
 
